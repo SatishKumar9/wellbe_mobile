@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_smart_course/src/helper/courseModel.dart';
+import 'package:flutter_smart_course/src/helper/articleModel.dart';
 import 'package:flutter_smart_course/src/helper/quad_clipper.dart';
 import 'package:flutter_smart_course/src/pages/home_page.dart';
 import 'package:flutter_smart_course/src/pages/recomended_page.dart';
@@ -49,10 +49,7 @@ class Article extends StatelessWidget {
                         children: <Widget>[
                           RaisedButton(
                             onPressed: () {
-                              Navigator.pushReplacement(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => HomePage()));
+                              Navigator.pop(context);
                             },
                             child: Icon(
                               Icons.keyboard_arrow_left,
@@ -130,13 +127,13 @@ class Article extends StatelessWidget {
 
   Widget _textSection = Container(
     padding: const EdgeInsets.all(32),
-    child: Text('Treating high blood pressure \n'
-    'Blood pressure is the force of blood flow inside your arteries (blood vessels). If your blood exerts too much force on those vessels, your heart has to work harder than it should, putting you at increased risk for heart attack, stroke, eye problems and kidney disease. As many as two out of three adults with diabetes have high blood pressure, also called hypertension. If you have diabetes, the ADA recommends having your blood pressure checked at every routine doctor’s visit.\n'
-    'Your healthcare team will use two numbers to describe your results—for instance, 120/80. The first number—known as “systolic” pressure—refers to the pressure your blood exerts as it pushes through your blood vessels when your heart beats. The second number—“diastolic” pressure—refers to the pressure between heartbeats, when the vessels relax. If you have diabetes, the ADA recommends keeping your blood pressure below 130-140/80-90.\n'
+    child: Text('Treating high blood pressure \n\n'
+    'Blood pressure is the force of blood flow inside your arteries (blood vessels). If your blood exerts too much force on those vessels, your heart has to work harder than it should, putting you at increased risk for heart attack, stroke, eye problems and kidney disease. As many as two out of three adults with diabetes have high blood pressure, also called hypertension. If you have diabetes, the ADA recommends having your blood pressure checked at every routine doctor’s visit.\n\n'
+    'Your healthcare team will use two numbers to describe your results—for instance, 120/80. The first number—known as “systolic” pressure—refers to the pressure your blood exerts as it pushes through your blood vessels when your heart beats. The second number—“diastolic” pressure—refers to the pressure between heartbeats, when the vessels relax. If you have diabetes, the ADA recommends keeping your blood pressure below 130-140/80-90.\n\n'
       'If you aren’t able to treat hypertension effectively through lifestyle changes, your doctor will prescribe medication. There are several kinds of blood pressure drugs, though not all of them are equally good for people with diabetes. Some raise blood glucose levels or mask some of the symptoms of low blood glucose (hypoglycemia). And you may need one or more to reach your blood pressure goals'
-      'Lowering high cholesterol \n'
-      'We’ve all heard about the perils of cholesterol, a type of fat produced by your liver and found in your blood. It’s important to understand the difference between the “good” kind and the “bad.” \n'
-      'Low-density lipoproteins—also known as LDL, or the “bad” cholesterol—can build up and clog your blood vessels. That buildup is called plaque. If you have too much LDL, you’re at greater risk of a heart attack or stroke. \n'
+      'Lowering high cholesterol \n\n'
+      'We’ve all heard about the perils of cholesterol, a type of fat produced by your liver and found in your blood. It’s important to understand the difference between the “good” kind and the “bad.” \n\n'
+      'Low-density lipoproteins—also known as LDL, or the “bad” cholesterol—can build up and clog your blood vessels. That buildup is called plaque. If you have too much LDL, you’re at greater risk of a heart attack or stroke. \n\n'
       'High-density lipoproteins—also called HDL and referred to as the cholesterol—helps remove the LDL from your blood vessels.',
       softWrap: true,
     ),

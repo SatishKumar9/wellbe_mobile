@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_smart_course/src/helper/quad_clipper.dart';
+import 'package:flutter_smart_course/src/helper/articleModel.dart';
 import 'package:flutter_smart_course/src/pages/article.dart';
-import 'package:flutter_smart_course/src/pages/recomended_page.dart';
+//import 'package:flutter_smart_course/src/pages/recomended_page.dart';
 import 'package:flutter_smart_course/src/theme/color/light_color.dart';
 
 class HomePage extends StatelessWidget {
@@ -56,7 +57,7 @@ class HomePage extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: <Widget>[
                               Text(
-                                "Type Something...",
+                                "Search here...",
                                 style: TextStyle(
                                     color: Colors.white54,
                                     fontSize: 25,
@@ -125,20 +126,20 @@ class HomePage extends StatelessWidget {
               backWidget:
                   _decorationContainerA(LightColor.lightOrange, 50, -30),
               chipColor: LightColor.orange,
-              chipText1: "What You Need To Know About Asthma",
+              model: ArticleList.list[0],
               isPrimaryCard: true,
             ),
             _card(
               primary: Colors.white,
               chipColor: LightColor.seeBlue,
               backWidget: _decorationContainerB(Colors.white, 90, -40),
-              chipText1: "Is It Asthma, Allergies or Both?",
+              model: ArticleList.list[1],
             ),
             _card(
               primary: Colors.white,
               chipColor: LightColor.lightOrange,
               backWidget: _decorationContainerC(Colors.white, 50, -30),
-              chipText1: "How to Weather Asthma Year Round",
+              model: ArticleList.list[2],
             ),
           ],
         ),
@@ -161,7 +162,7 @@ class HomePage extends StatelessWidget {
                   LightColor.darkseeBlue, -100, -65,
                   secondary: LightColor.lightseeBlue,
                   secondaryAccent: LightColor.seeBlue),
-              chipText1: "How to Develop Your Diabetes Action Plan",
+              model: ArticleList.list[0],
               isPrimaryCard: true,
             ),
             _card(
@@ -173,14 +174,14 @@ class HomePage extends StatelessWidget {
                 -40,
                 secondary: LightColor.lightseeBlue,
               ),
-              chipText1: "How to Protect Your Heart if You Have Diabetes",
+              model: ArticleList.list[1],
             ),
             _card(
               primary: Colors.white,
               chipColor: LightColor.lightOrange,
               backWidget: _decorationContainerF(
                   LightColor.lightOrange, LightColor.orange, 50, -30),
-              chipText1: "Types of Diabetes",
+              model: ArticleList.list[2],
             ),
             _card(
               primary: Colors.white,
@@ -190,7 +191,7 @@ class HomePage extends StatelessWidget {
                 -70,
                 30,
               ),
-              chipText1: "How to Give Yourself an Insulin Injection",
+              model: ArticleList.list[0],
             ),
           ],
         ),
@@ -199,42 +200,44 @@ class HomePage extends StatelessWidget {
   }
 
   Widget _card(
-      {Color primary = Colors.redAccent,
-      String chipText1 = '',
+      {BuildContext context,
+        Color primary = Colors.redAccent,
+      ArticleModel model,
       String chipText2 = '',
       Widget backWidget,
       Color chipColor = LightColor.orange,
       bool isPrimaryCard = false}) {
     return Container(
-        height: 180,
-        width: width * .32,
-        margin: EdgeInsets.symmetric(horizontal: 10, vertical: 20),
-        decoration: BoxDecoration(
-            color: primary.withAlpha(200),
-            borderRadius: BorderRadius.all(Radius.circular(20)),
-            boxShadow: <BoxShadow>[
-              BoxShadow(
-                  offset: Offset(0, 5),
-                  blurRadius: 10,
-                  color: LightColor.lightpurple.withAlpha(20))
-            ]),
-        child: ClipRRect(
+      height: 180,
+      width: width * .32,
+      margin: EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+      decoration: BoxDecoration(
+          color: primary.withAlpha(200),
           borderRadius: BorderRadius.all(Radius.circular(20)),
-          child: Container(
-            child: Stack(
-              children: <Widget>[
-                backWidget,
-                Positioned(
-                  bottom: 30,
-                  left: 10,
-                  child: _cardInfo(chipText1, chipText2,
-                      LightColor.titleTextColor, chipColor,
-                      isPrimaryCard: isPrimaryCard),
-                )
-              ],
-            ),
+          boxShadow: <BoxShadow>[
+            BoxShadow(
+                offset: Offset(0, 5),
+                blurRadius: 10,
+                color: LightColor.lightpurple.withAlpha(20))
+          ]),
+      child: ClipRRect(
+        borderRadius: BorderRadius.all(Radius.circular(20)),
+        child: Container(
+          child: Stack(
+            children: <Widget>[
+              backWidget,
+              Positioned(
+                bottom: 30,
+                left: 10,
+                child: _cardInfo(model.title, chipText2,
+                    LightColor.titleTextColor, chipColor,
+                    isPrimaryCard: isPrimaryCard),
+              )
+            ],
           ),
-        ));
+        ),
+      ),
+    );
   }
 
   Widget _cardInfo(String title, String courses, Color textColor, Color primary,
@@ -476,8 +479,8 @@ class HomePage extends StatelessWidget {
 //            setState(() {
 //              _currentNav =  index;
 //            });
-            Navigator.pushReplacement(context,
-                MaterialPageRoute(builder: (context) => Article()));
+            Navigator.pushReplacement(
+                context, MaterialPageRoute(builder: (context) => Article()));
           },
         ),
         body: SingleChildScrollView(
@@ -490,7 +493,7 @@ class HomePage extends StatelessWidget {
               _featuredRowA(),
               SizedBox(height: 0),
               _categoryRow(
-                  "Featured", LightColor.purple, LightColor.darkpurple),
+                  "Diabetes", LightColor.purple, LightColor.darkpurple),
               _featuredRowB()
             ],
           ),

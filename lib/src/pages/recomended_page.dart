@@ -16,7 +16,7 @@ class RecomendedPage extends StatelessWidget {
       borderRadius: BorderRadius.only(
           bottomLeft: Radius.circular(50), bottomRight: Radius.circular(50)),
       child: Container(
-          height: 120,
+          height: 110,
           width: width,
           decoration: BoxDecoration(
             color: LightColor.orange,
@@ -57,7 +57,7 @@ class RecomendedPage extends StatelessWidget {
                                 "Your Bookmarks",
                                 style: TextStyle(
                                     color: Colors.white,
-                                    fontSize: 30,
+                                    fontSize: 28,
                                     fontWeight: FontWeight.w500),
                               ))
                         ],

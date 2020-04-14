@@ -15,7 +15,7 @@ class CourseList {
     CourseModel(
         name: "How to Protect Your Heart if You Have Diabetes",
         description:
-            "According to the American Diabetes Association (ADA), adults with diabetes are almost twice as likely to have a heart attack or stroke as those without diabetes.",
+            "According to ADA, adults with diabetes are almost twice as likely to have a heart attack or stroke as those without diabetes.",
         tag1: "Diabetes",
       ),
     CourseModel(
