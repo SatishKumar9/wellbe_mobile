@@ -2,21 +2,28 @@ import 'package:flutter/material.dart';
 import 'package:flutter_smart_course/src/helper/quad_clipper.dart';
 import 'package:flutter_smart_course/src/helper/articleModel.dart';
 import 'package:flutter_smart_course/src/pages/article.dart';
-//import 'package:flutter_smart_course/src/pages/recomended_page.dart';
+import 'package:flutter_smart_course/src/pages/recomended_page.dart';
 import 'package:flutter_smart_course/src/theme/color/light_color.dart';
+import "dart:math";
+
+import 'drawer.dart';
+import 'article.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({Key key}) : super(key: key);
 
   double width;
 
+  final decorationList = ['a', 'b', 'c', 'd', 'e', 'f'];
+  final _random = new Random();
+
   Widget _header(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
     return ClipRRect(
       borderRadius: BorderRadius.only(
-          bottomLeft: Radius.circular(50), bottomRight: Radius.circular(50)),
+          bottomLeft: Radius.circular(25), bottomRight: Radius.circular(25)),
       child: Container(
-          height: 150,
+          height: 70,
           width: width,
           decoration: BoxDecoration(
             color: LightColor.purple,
@@ -39,7 +46,7 @@ class HomePage extends StatelessWidget {
                   child: _circularContainer(width * .7, Colors.transparent,
                       borderColor: Colors.white38)),
               Positioned(
-                  top: 40,
+                  top: 20,
                   left: 0,
                   child: Container(
                       width: width,
@@ -123,8 +130,7 @@ class HomePage extends StatelessWidget {
           children: <Widget>[
             _card(
               primary: LightColor.orange,
-              backWidget:
-                  _decorationContainerA(LightColor.lightOrange, 50, -30),
+              backWidget: _decorationContainerA(LightColor.lightOrange, 50, -30),
               chipColor: LightColor.orange,
               model: ArticleList.list[0],
               isPrimaryCard: true,
@@ -132,7 +138,9 @@ class HomePage extends StatelessWidget {
             _card(
               primary: Colors.white,
               chipColor: LightColor.seeBlue,
-              backWidget: _decorationContainerB(Colors.white, 90, -40),
+              backWidget: decorationList[_random.nextInt(decorationList.length)] == 'b'
+                      ? _decorationContainerB(Colors.white, 90, -40)
+                      : _decorationContainerC(Colors.white, 50, -30),
               model: ArticleList.list[1],
             ),
             _card(
@@ -201,39 +209,49 @@ class HomePage extends StatelessWidget {
 
   Widget _card(
       {BuildContext context,
-        Color primary = Colors.redAccent,
+      Color primary = Colors.redAccent,
       ArticleModel model,
       String chipText2 = '',
       Widget backWidget,
       Color chipColor = LightColor.orange,
       bool isPrimaryCard = false}) {
-    return Container(
-      height: 180,
-      width: width * .32,
-      margin: EdgeInsets.symmetric(horizontal: 10, vertical: 20),
-      decoration: BoxDecoration(
+    return InkWell(
+      onTap: () {
+        print('clicked card');
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => Article()),
+        );
+      },
+      child: Container(
+        height: 180,
+        width: width * .32,
+        margin: EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+        decoration: BoxDecoration(
           color: primary.withAlpha(200),
           borderRadius: BorderRadius.all(Radius.circular(20)),
           boxShadow: <BoxShadow>[
             BoxShadow(
-                offset: Offset(0, 5),
+                offset: Offset(0, 20),
                 blurRadius: 10,
                 color: LightColor.lightpurple.withAlpha(20))
-          ]),
-      child: ClipRRect(
-        borderRadius: BorderRadius.all(Radius.circular(20)),
-        child: Container(
-          child: Stack(
-            children: <Widget>[
-              backWidget,
-              Positioned(
-                bottom: 30,
-                left: 10,
-                child: _cardInfo(model.title, chipText2,
-                    LightColor.titleTextColor, chipColor,
-                    isPrimaryCard: isPrimaryCard),
-              )
-            ],
+          ],
+        ),
+        child: ClipRRect(
+          borderRadius: BorderRadius.all(Radius.circular(20)),
+          child: Container(
+            child: Stack(
+              children: <Widget>[
+                backWidget,
+                Positioned(
+                  bottom: 30,
+                  left: 10,
+                  child: _cardInfo(model.title, chipText2,
+                      LightColor.titleTextColor, chipColor,
+                      isPrimaryCard: isPrimaryCard),
+                )
+              ],
+            ),
           ),
         ),
       ),
@@ -259,7 +277,7 @@ class HomePage extends StatelessWidget {
                   color: isPrimaryCard ? Colors.white : textColor),
             ),
           ),
-          SizedBox(height: 5),
+          // SizedBox(height: 5),
           //_chip(courses, primary, height: 5, isPrimaryCard: isPrimaryCard)
         ],
       ),
@@ -462,32 +480,35 @@ class HomePage extends StatelessWidget {
     width = MediaQuery.of(context).size.width;
     int _currentNav = 0;
     return Scaffold(
-        bottomNavigationBar: BottomNavigationBar(
-          currentIndex: _currentNav,
-          showSelectedLabels: false,
-          showUnselectedLabels: false,
-          selectedItemColor: LightColor.purple,
-          unselectedItemColor: Colors.grey.shade300,
-          type: BottomNavigationBarType.fixed,
-          items: [
-            _bottomIcons(Icons.home),
-            _bottomIcons(Icons.star_border),
-            _bottomIcons(Icons.book),
-            _bottomIcons(Icons.person),
-          ],
-          onTap: (index) {
+      appBar: AppBar(
+        title: Text("WellBE"),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _currentNav,
+        showSelectedLabels: false,
+        showUnselectedLabels: false,
+        selectedItemColor: LightColor.purple,
+        unselectedItemColor: Colors.grey.shade300,
+        type: BottomNavigationBarType.fixed,
+        items: [
+          _bottomIcons(Icons.home),
+          _bottomIcons(Icons.star_border),
+          _bottomIcons(Icons.book),
+          _bottomIcons(Icons.person),
+        ],
+        onTap: (index) {
 //            setState(() {
 //              _currentNav =  index;
 //            });
-            Navigator.pushReplacement(
-                context, MaterialPageRoute(builder: (context) => Article()));
-          },
-        ),
-        body: SingleChildScrollView(
-            child: Container(
+          Navigator.pushReplacement(
+              context, MaterialPageRoute(builder: (context) => Article()));
+        },
+      ),
+      body: SingleChildScrollView(
+        child: Container(
           child: Column(
             children: <Widget>[
-              _header(context),
+              // _header(context),
               SizedBox(height: 20),
               _categoryRow("Asthma", LightColor.orange, LightColor.orange),
               _featuredRowA(),
@@ -497,6 +518,9 @@ class HomePage extends StatelessWidget {
               _featuredRowB()
             ],
           ),
-        )));
+        ),
+      ),
+      drawer: AppDrawer(),
+    );
   }
 }

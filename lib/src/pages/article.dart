@@ -47,7 +47,7 @@ class Article extends StatelessWidget {
                       padding: EdgeInsets.symmetric(horizontal: 20),
                       child: Stack(
                         children: <Widget>[
-                          RaisedButton(
+                          FlatButton(
                             onPressed: () {
                               Navigator.pop(context);
                             },

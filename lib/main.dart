@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       theme: AppTheme.lightTheme,
       home: HomePage(),
-
+      title: 'WellBe Mobile',
       debugShowCheckedModeBanner: false,
     );
   }
