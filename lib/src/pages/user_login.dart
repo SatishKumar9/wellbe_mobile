@@ -144,7 +144,7 @@ class _UserLoginPageState extends State<UserLoginPage> {
             child: ListView(
               padding: EdgeInsets.symmetric(horizontal: 24.0),
               children: <Widget>[
-                SizedBox(height: 100.0),
+                SizedBox(height: 60.0),
                 Text(
                   "Login",
                   textAlign: TextAlign.center,
@@ -153,6 +153,7 @@ class _UserLoginPageState extends State<UserLoginPage> {
                     color: Colors.white,
                   ),
                 ),
+                SizedBox(height: 40.0,),
                 new TextFormField(
                   controller: _phoneNoChannge,
                   style: TextStyle(color: Colors.white),
@@ -303,10 +304,16 @@ class _UserLoginPageState extends State<UserLoginPage> {
             autovalidate: true,
           ),
           decoration: BoxDecoration(
-              gradient: LinearGradient(
-                  begin: Alignment.topRight,
-                  end: Alignment.bottomLeft,
-                  colors: [Colors.blue, Colors.teal])),
+            gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                stops: [0.0, 0.4, 1],
+                colors: [Colors.white, Colors.lightBlueAccent, Colors.blue]),
+          //   image: DecorationImage(
+          //   image: AssetImage("assets/background.jpg"),
+          //   fit: BoxFit.cover,
+          // ),
+          ),
         ),
       ),
     );
