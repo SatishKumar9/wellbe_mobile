@@ -7,7 +7,9 @@ import 'package:flutter_smart_course/src/theme/color/light_color.dart';
 import 'package:flutter_smart_course/src/theme/theme.dart';
 
 class Article extends StatelessWidget {
-  Article({Key key}) : super(key: key);
+  // Article({Key key}) : super(key: key);
+
+  Article(ArticleModel model);
 
   double width;
 
@@ -149,32 +151,32 @@ class Article extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: 0,
-        showSelectedLabels: false,
-        showUnselectedLabels: false,
-        selectedItemColor: LightColor.purple,
-        unselectedItemColor: Colors.grey.shade300,
-        type: BottomNavigationBarType.fixed,
-        items: [
-          _bottomIcons(Icons.home),
-          _bottomIcons(Icons.star_border),
-          _bottomIcons(Icons.book),
-          _bottomIcons(Icons.person),
-        ],
-        onTap: (index) {
-//            setState(() {
-//              _currentNav =  index;
-//            });
-          Navigator.pushReplacement(context,
-              MaterialPageRoute(builder: (context) => RecomendedPage()));
-        },
-      ),
+//       bottomNavigationBar: BottomNavigationBar(
+//         currentIndex: 0,
+//         showSelectedLabels: false,
+//         showUnselectedLabels: false,
+//         selectedItemColor: LightColor.purple,
+//         unselectedItemColor: Colors.grey.shade300,
+//         type: BottomNavigationBarType.fixed,
+//         items: [
+//           _bottomIcons(Icons.home),
+//           _bottomIcons(Icons.star_border),
+//           _bottomIcons(Icons.book),
+//           _bottomIcons(Icons.person),
+//         ],
+//         onTap: (index) {
+// //            setState(() {
+// //              _currentNav =  index;
+// //            });
+//           Navigator.pushReplacement(context,
+//               MaterialPageRoute(builder: (context) => RecomendedPage()));
+//         },
+//       ),
       body: SingleChildScrollView(
         child: Container(
           child: Column(
             children: <Widget>[
-              _header(context),
+              // _header(context),
               Image.asset(
                 'assets/diabetes.jpg',
                 width: 600,

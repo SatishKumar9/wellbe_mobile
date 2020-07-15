@@ -61,25 +61,9 @@ class _drawer extends State<AppDrawer> {
         });
   }
 
-  // get_emp() {
-  //   localRead("emp_user").then((em) => {
-  //         setState(() {
-  //           print("emp username: $em");
-  //           emp = em;
-  //         })
-  //       });
-  //   localRead("emp_name").then((nam) => {
-  //         setState(() {
-  //           print("emp name: $nam");
-  //           emp_name = nam;
-  //         })
-  //       });
-  // }
-
   @override
   void initState() {
     super.initState();
-    // get_emp();
     get_user();
   }
 

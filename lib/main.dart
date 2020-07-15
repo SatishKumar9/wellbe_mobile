@@ -10,7 +10,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: AppTheme.lightTheme,
+      // theme: AppTheme.lightTheme,
       home: HomePage(),
       title: 'WellBe Mobile',
       debugShowCheckedModeBanner: false,

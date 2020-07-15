@@ -5,15 +5,32 @@ import 'package:flutter_smart_course/src/pages/article.dart';
 import 'package:flutter_smart_course/src/pages/recomended_page.dart';
 import 'package:flutter_smart_course/src/theme/color/light_color.dart';
 import "dart:math";
+import 'dart:core';
+import 'dart:convert';
+import 'package:http/http.dart';
 
 import 'drawer.dart';
 import 'article.dart';
 import 'notifications.dart';
+import '../helper/functions.dart';
 
-class HomePage extends StatelessWidget {
-  HomePage({Key key}) : super(key: key);
+class HomePage extends StatefulWidget {
+  @override
+  HomePageState createState() => HomePageState();
+}
+
+class HomePageState extends State<HomePage> {
+  // HomePage({Key key}) : super(key: key);
 
   double width;
+  var categories = [];
+  var categoryArticles = [];
+
+  // _HomePageState() {
+  //   getCategories().then((value) => setState(() {
+  //         categories = value;
+  //       }));
+  // }
 
   final decorationList = ['a', 'b', 'c', 'd', 'e', 'f'];
   final _random = new Random();
@@ -121,7 +138,8 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  Widget _featuredRowA(context) {
+  Widget _featuredRowA(context, String category) {
+    getCategoryArticles(category);
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: Container(
@@ -129,38 +147,26 @@ class HomePage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.end,
           children: <Widget>[
-            InkWell(
-              onTap: () {
-                print('clicked card1');
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => Article()),
-                );
-              },
-              child: _card(
-                primary: LightColor.orange,
-                backWidget:
-                    _decorationContainerA(LightColor.lightOrange, 50, -30),
-                chipColor: LightColor.orange,
-                model: ArticleList.list[0],
-                isPrimaryCard: true,
+            for (var index = 0; index < ArticleList.list.length; index++)
+              InkWell(
+                onTap: () {
+                  print('clicked card iterable $index');
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => Article(ArticleList.list[index])),
+                  );
+                },
+                child: _card(
+                  primary: (index == 0) ? LightColor.orange : Colors.white,
+                  backWidget: (index == 0)
+                      ? _decorationContainerA(LightColor.lightOrange, 50, -30)
+                      : _decorationContainerRandomise(),
+                  chipColor: LightColor.orange,
+                  model: ArticleList.list[index],
+                  isPrimaryCard: (index == 0) ? true : false,
+                ),
               ),
-            ),
-            _card(
-              primary: Colors.white,
-              chipColor: LightColor.seeBlue,
-              backWidget:
-                  decorationList[_random.nextInt(decorationList.length)] == 'b'
-                      ? _decorationContainerB(Colors.white, 90, -40)
-                      : _decorationContainerC(Colors.white, 50, -30),
-              model: ArticleList.list[1],
-            ),
-            _card(
-              primary: Colors.white,
-              chipColor: LightColor.lightOrange,
-              backWidget: _decorationContainerC(Colors.white, 50, -30),
-              model: ArticleList.list[2],
-            ),
           ],
         ),
       ),
@@ -275,7 +281,7 @@ class HomePage extends StatelessWidget {
             child: Text(
               title,
               style: TextStyle(
-                  fontSize: 13,
+                  fontSize: 14,
                   fontWeight: FontWeight.bold,
                   color: isPrimaryCard ? Colors.white : textColor),
             ),
@@ -302,6 +308,27 @@ class HomePage extends StatelessWidget {
             color: isPrimaryCard ? Colors.white : textColor, fontSize: 12),
       ),
     );
+  }
+
+  Widget _decorationContainerRandomise() {
+    var item = decorationList[_random.nextInt(decorationList.length)];
+    if (item == 'a') return _decorationContainerA(LightColor.yellow, -70, 30);
+    if (item == 'b') return _decorationContainerB(Colors.white, 90, -40);
+    if (item == 'c') return _decorationContainerC(Colors.white, 50, -30);
+    if (item == 'd')
+      return _decorationContainerD(Colors.white, -100, -65,
+          secondary: LightColor.lightseeBlue,
+          secondaryAccent: LightColor.seeBlue);
+    if (item == 'e')
+      return _decorationContainerE(
+        LightColor.lightpurple,
+        90,
+        -40,
+        secondary: LightColor.lightseeBlue,
+      );
+    if (item == 'f')
+      return _decorationContainerF(
+          LightColor.lightOrange, LightColor.orange, 50, -30);
   }
 
   Widget _decorationContainerA(Color primary, double top, double left) {
@@ -478,10 +505,61 @@ class HomePage extends StatelessWidget {
     return BottomNavigationBarItem(icon: Icon(icon), title: Text(""));
   }
 
+  Future<void> getCategoryArticles(category) async {
+    final url = 'https://aszhzax9c3.execute-api.us-east-1.amazonaws.com/test/';
+    final headers = {'Content-Type': 'application/json'};
+    // print(category);
+    Map<String, dynamic> body = {"category": category};
+    Response response = await post(
+      url,
+      headers: headers,
+      body: jsonEncode(body),
+    );
+    var resp = jsonDecode(response.body);
+    if (resp["statusCode"] == 200) {
+      // Comment -> resp["body"].length > 1000   ???
+      // for (var i = 0; i < resp["body"].length; i++ ) {
+      //   print(resp["body"][i]);
+      // }
+      setState(() {
+        categoryArticles = resp["body"];
+      });
+      print(categoryArticles);
+    }
+  }
+
+  Future<void> getCategories() async {
+    final url = 'https://evgl7agfd8.execute-api.us-east-1.amazonaws.com/test/';
+    final headers = {'Content-Type': 'application/json'};
+    Map<String, dynamic> body = {};
+    Response response = await post(
+      url,
+      headers: headers,
+      body: jsonEncode(body),
+    );
+    var resp = jsonDecode(response.body);
+    if (resp["statusCode"] == 200) {
+      // print(resp["body"]);
+      // for (var category in resp["body"]) {
+      //   getCategoryArticles(category);
+      // }
+      setState(() {
+        categories = resp["body"];
+      });
+      print("catgories $categories");
+    }
+  }
+
+  @override
+  void initState() {
+    getCategories();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     width = MediaQuery.of(context).size.width;
-    int _currentNav = 0;
+    // int _currentNav = 0;
     return Scaffold(
       appBar: AppBar(
         title: Text("WellBe"),
@@ -498,35 +576,40 @@ class HomePage extends StatelessWidget {
           )
         ],
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _currentNav,
-        showSelectedLabels: false,
-        showUnselectedLabels: false,
-        selectedItemColor: LightColor.purple,
-        unselectedItemColor: Colors.grey.shade300,
-        type: BottomNavigationBarType.fixed,
-        items: [
-          _bottomIcons(Icons.home),
-          _bottomIcons(Icons.star_border),
-          _bottomIcons(Icons.book),
-          _bottomIcons(Icons.person),
-        ],
-        onTap: (index) {
+//       bottomNavigationBar: BottomNavigationBar(
+//         currentIndex: _currentNav,
+//         showSelectedLabels: false,
+//         showUnselectedLabels: false,
+//         selectedItemColor: LightColor.purple,
+//         unselectedItemColor: Colors.grey.shade300,
+//         type: BottomNavigationBarType.fixed,
+//         items: [
+//           _bottomIcons(Icons.home),
+//           _bottomIcons(Icons.star_border),
+//           _bottomIcons(Icons.book),
+//           _bottomIcons(Icons.person),
+//         ],
+//         onTap: (index) {
 //            setState(() {
 //              _currentNav =  index;
 //            });
-          Navigator.pushReplacement(
-              context, MaterialPageRoute(builder: (context) => Article()));
-        },
-      ),
+//           Navigator.pushReplacement(
+//               context, MaterialPageRoute(builder: (context) => Article()));
+//         },
+//       ),
       body: SingleChildScrollView(
         child: Container(
           child: Column(
             children: <Widget>[
               // _header(context),
               SizedBox(height: 20),
+              for (var category in categories)
+                Column(children: <Widget>[
+                  _categoryRow(category, LightColor.orange, LightColor.orange),
+                  _featuredRowA(context, category)
+                ]),
               _categoryRow("Asthma", LightColor.orange, LightColor.orange),
-              _featuredRowA(context),
+              // _featuredRowA(context),
               SizedBox(height: 0),
               _categoryRow(
                   "Diabetes", LightColor.purple, LightColor.darkpurple),
