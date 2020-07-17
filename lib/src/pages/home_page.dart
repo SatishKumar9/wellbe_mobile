@@ -1,9 +1,9 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_smart_course/src/helper/quad_clipper.dart';
-import 'package:flutter_smart_course/src/helper/articleModel.dart';
-import 'package:flutter_smart_course/src/pages/article.dart';
-import 'package:flutter_smart_course/src/pages/recomended_page.dart';
 import 'package:flutter_smart_course/src/theme/color/light_color.dart';
+
 import "dart:math";
 import 'dart:core';
 import 'dart:convert';
@@ -12,7 +12,6 @@ import 'package:http/http.dart';
 import 'drawer.dart';
 import 'article.dart';
 import 'notifications.dart';
-import '../helper/functions.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -23,16 +22,10 @@ class HomePageState extends State<HomePage> {
   // HomePage({Key key}) : super(key: key);
 
   double width;
+  double height;
   var categories = [];
-  var categoryArticles = [];
-
-  // _HomePageState() {
-  //   getCategories().then((value) => setState(() {
-  //         categories = value;
-  //       }));
-  // }
-
-  final decorationList = ['a', 'b', 'c', 'd', 'e', 'f'];
+  var categoryArticles = new Map();
+  final decorationList = ['a', 'b', 'c', 'e', 'f'];
   final _random = new Random();
 
   Widget _header(BuildContext context) {
@@ -139,7 +132,6 @@ class HomePageState extends State<HomePage> {
   }
 
   Widget _featuredRowA(context, String category) {
-    getCategoryArticles(category);
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: Container(
@@ -147,23 +139,29 @@ class HomePageState extends State<HomePage> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.end,
           children: <Widget>[
-            for (var index = 0; index < ArticleList.list.length; index++)
+            // if (categoryArticles.length != 0)
+            for (var index = 0;
+                index < categoryArticles[category].length;
+                index++)
               InkWell(
                 onTap: () {
-                  print('clicked card iterable $index');
+                  print('clicked card iterable $category $index');
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => Article(ArticleList.list[index])),
+                        builder: (context) =>
+                            Article(categoryArticles[category][index])),
                   );
                 },
                 child: _card(
-                  primary: (index == 0) ? LightColor.orange : Colors.white,
+                  primary: (index == 0) ? LightColor.seeBlue : Colors.white,
                   backWidget: (index == 0)
-                      ? _decorationContainerA(LightColor.lightOrange, 50, -30)
+                      ? _decorationContainerD(LightColor.darkseeBlue, -100, -65,
+                          secondary: LightColor.lightseeBlue,
+                          secondaryAccent: LightColor.seeBlue)
                       : _decorationContainerRandomise(),
-                  chipColor: LightColor.orange,
-                  model: ArticleList.list[index],
+                  chipColor: LightColor.seeBlue,
+                  articleTitle: categoryArticles[category][index]["title"],
                   isPrimaryCard: (index == 0) ? true : false,
                 ),
               ),
@@ -173,62 +171,10 @@ class HomePageState extends State<HomePage> {
     );
   }
 
-  Widget _featuredRowB() {
-    return SingleChildScrollView(
-      scrollDirection: Axis.horizontal,
-      child: Container(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.end,
-          children: <Widget>[
-            _card(
-              primary: LightColor.seeBlue,
-              chipColor: LightColor.seeBlue,
-              backWidget: _decorationContainerD(
-                  LightColor.darkseeBlue, -100, -65,
-                  secondary: LightColor.lightseeBlue,
-                  secondaryAccent: LightColor.seeBlue),
-              model: ArticleList.list[0],
-              isPrimaryCard: true,
-            ),
-            _card(
-              primary: Colors.white,
-              chipColor: LightColor.lightpurple,
-              backWidget: _decorationContainerE(
-                LightColor.lightpurple,
-                90,
-                -40,
-                secondary: LightColor.lightseeBlue,
-              ),
-              model: ArticleList.list[1],
-            ),
-            _card(
-              primary: Colors.white,
-              chipColor: LightColor.lightOrange,
-              backWidget: _decorationContainerF(
-                  LightColor.lightOrange, LightColor.orange, 50, -30),
-              model: ArticleList.list[2],
-            ),
-            _card(
-              primary: Colors.white,
-              chipColor: LightColor.seeBlue,
-              backWidget: _decorationContainerA(
-                LightColor.yellow,
-                -70,
-                30,
-              ),
-              model: ArticleList.list[0],
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
   Widget _card(
       {BuildContext context,
       Color primary = Colors.redAccent,
-      ArticleModel model,
+      String articleTitle,
       String chipText2 = '',
       Widget backWidget,
       Color chipColor = LightColor.orange,
@@ -256,7 +202,7 @@ class HomePageState extends State<HomePage> {
               Positioned(
                 bottom: 20,
                 left: 10,
-                child: _cardInfo(model.title, chipText2,
+                child: _cardInfo(articleTitle, chipText2,
                     LightColor.titleTextColor, chipColor,
                     isPrimaryCard: isPrimaryCard),
               )
@@ -315,10 +261,10 @@ class HomePageState extends State<HomePage> {
     if (item == 'a') return _decorationContainerA(LightColor.yellow, -70, 30);
     if (item == 'b') return _decorationContainerB(Colors.white, 90, -40);
     if (item == 'c') return _decorationContainerC(Colors.white, 50, -30);
-    if (item == 'd')
-      return _decorationContainerD(Colors.white, -100, -65,
-          secondary: LightColor.lightseeBlue,
-          secondaryAccent: LightColor.seeBlue);
+    // if (item == 'd')
+    //   return _decorationContainerD(Colors.white, -100, -65,
+    //       secondary: LightColor.lightseeBlue,
+    //       secondaryAccent: LightColor.seeBlue);
     if (item == 'e')
       return _decorationContainerE(
         LightColor.lightpurple,
@@ -505,10 +451,9 @@ class HomePageState extends State<HomePage> {
     return BottomNavigationBarItem(icon: Icon(icon), title: Text(""));
   }
 
-  Future<void> getCategoryArticles(category) async {
+  Future<List<dynamic>> getCategoryArticles(category) async {
     final url = 'https://aszhzax9c3.execute-api.us-east-1.amazonaws.com/test/';
     final headers = {'Content-Type': 'application/json'};
-    // print(category);
     Map<String, dynamic> body = {"category": category};
     Response response = await post(
       url,
@@ -517,14 +462,8 @@ class HomePageState extends State<HomePage> {
     );
     var resp = jsonDecode(response.body);
     if (resp["statusCode"] == 200) {
-      // Comment -> resp["body"].length > 1000   ???
-      // for (var i = 0; i < resp["body"].length; i++ ) {
-      //   print(resp["body"][i]);
-      // }
-      setState(() {
-        categoryArticles = resp["body"];
-      });
-      print(categoryArticles);
+      categoryArticles[category] = resp["body"];
+      // print(categoryArticles);
     }
   }
 
@@ -532,6 +471,8 @@ class HomePageState extends State<HomePage> {
     final url = 'https://evgl7agfd8.execute-api.us-east-1.amazonaws.com/test/';
     final headers = {'Content-Type': 'application/json'};
     Map<String, dynamic> body = {};
+    categoryArticles = {};
+    // categories = [];
     Response response = await post(
       url,
       headers: headers,
@@ -539,14 +480,15 @@ class HomePageState extends State<HomePage> {
     );
     var resp = jsonDecode(response.body);
     if (resp["statusCode"] == 200) {
-      // print(resp["body"]);
-      // for (var category in resp["body"]) {
-      //   getCategoryArticles(category);
-      // }
+      for (var category in resp["body"]) {
+        await getCategoryArticles(category);
+      }
       setState(() {
         categories = resp["body"];
       });
-      print("catgories $categories");
+      categories.sort();
+      // print("categories $categories");
+      print(categoryArticles.length);
     }
   }
 
@@ -560,6 +502,7 @@ class HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     width = MediaQuery.of(context).size.width;
     // int _currentNav = 0;
+    height = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: AppBar(
         title: Text("WellBe"),
@@ -576,47 +519,36 @@ class HomePageState extends State<HomePage> {
           )
         ],
       ),
-//       bottomNavigationBar: BottomNavigationBar(
-//         currentIndex: _currentNav,
-//         showSelectedLabels: false,
-//         showUnselectedLabels: false,
-//         selectedItemColor: LightColor.purple,
-//         unselectedItemColor: Colors.grey.shade300,
-//         type: BottomNavigationBarType.fixed,
-//         items: [
-//           _bottomIcons(Icons.home),
-//           _bottomIcons(Icons.star_border),
-//           _bottomIcons(Icons.book),
-//           _bottomIcons(Icons.person),
-//         ],
-//         onTap: (index) {
-//            setState(() {
-//              _currentNav =  index;
-//            });
-//           Navigator.pushReplacement(
-//               context, MaterialPageRoute(builder: (context) => Article()));
-//         },
-//       ),
       body: SingleChildScrollView(
         child: Container(
-          child: Column(
-            children: <Widget>[
-              // _header(context),
-              SizedBox(height: 20),
-              for (var category in categories)
-                Column(children: <Widget>[
-                  _categoryRow(category, LightColor.orange, LightColor.orange),
-                  _featuredRowA(context, category)
-                ]),
-              _categoryRow("Asthma", LightColor.orange, LightColor.orange),
-              // _featuredRowA(context),
-              SizedBox(height: 0),
-              _categoryRow(
-                  "Diabetes", LightColor.purple, LightColor.darkpurple),
-              _featuredRowB()
-            ],
-          ),
-        ),
+            child: (categoryArticles.length + categories.length == 0)
+                ? Column(children: <Widget>[
+                    Center(
+                      heightFactor: 15,
+                      child: CircularProgressIndicator(),
+                    )
+                  ])
+                : Column(
+                    children: <Widget>[
+                      // _header(context),
+                      SizedBox(height: 20),
+                      for (var category in categories)
+                        Column(children: <Widget>[
+                          _categoryRow(category.toUpperCase(),
+                              LightColor.purple, LightColor.darkpurple),
+                          _featuredRowA(context, category)
+                        ]),
+                      SizedBox(height: 30),
+                      Text(
+                        '*End of articles*',
+                        style: TextStyle(
+                            color: Colors.grey[500],
+                            fontStyle: FontStyle.italic,
+                            fontSize: 13),
+                      ),
+                      SizedBox(height: 20),
+                    ],
+                  )),
       ),
       drawer: AppDrawer(),
     );
