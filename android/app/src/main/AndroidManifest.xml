@@ -9,6 +9,10 @@
         android:name="io.flutter.app.FlutterApplication"
         android:label="flutter_smart_course"
         android:icon="@mipmap/ic_launcher">
+
+        <meta-data android:name="com.google.android.geo.API_KEY"
+               android:value="AIzaSyAIKkrKllWjajrA3Me6s5b0JE0XRDgfgG8"/>
+
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"

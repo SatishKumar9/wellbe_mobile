@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'categorypage.dart';
 
 class CategoriesPage extends StatelessWidget {
   final Map categories = {
@@ -38,6 +39,10 @@ class CategoriesPage extends StatelessWidget {
                   InkWell(
                     onTap: () {
                       print('Selected $category');
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => CategoryPage()),
+                      );
                     },
                     child: Container(
                       padding: const EdgeInsets.all(8),
