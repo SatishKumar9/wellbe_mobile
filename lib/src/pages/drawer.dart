@@ -3,6 +3,7 @@ import 'home_page.dart';
 import 'recomended_page.dart';
 import 'user_login.dart';
 import 'user_profile.dart';
+import 'categories.dart';
 import '../helper/functions.dart';
 
 class AppDrawer extends StatefulWidget {
@@ -116,6 +117,21 @@ class _drawer extends State<AppDrawer> {
             onTap: () {
               Navigator.push(context,
                   new MaterialPageRoute(builder: (context) => HomePage()));
+            },
+          ),
+            ListTile(
+            title: Row(
+              children: <Widget>[
+                Icon(Icons.category),
+                Padding(
+                  padding: EdgeInsets.only(left: 8.0),
+                  child: Text('Category'),
+                )
+              ],
+            ),
+            onTap: () {
+              Navigator.push(context,
+                  new MaterialPageRoute(builder: (context) => CategoriesPage()));
             },
           ),
           ListTile(

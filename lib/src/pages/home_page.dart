@@ -132,6 +132,7 @@ class HomePageState extends State<HomePage> {
   }
 
   Widget _featuredRowA(context, String category) {
+    width = MediaQuery.of(context).size.width;
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: Container(
@@ -139,7 +140,6 @@ class HomePageState extends State<HomePage> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.end,
           children: <Widget>[
-            // if (categoryArticles.length != 0)
             for (var index = 0;
                 index < categoryArticles[category].length;
                 index++)
@@ -165,6 +165,14 @@ class HomePageState extends State<HomePage> {
                   isPrimaryCard: (index == 0) ? true : false,
                 ),
               ),
+            if (categoryArticles[category].length == 1)
+              Container(
+                child: Container(width: width * .62, child: Text('')),
+              ),
+            if (categoryArticles[category].length == 2)
+              Container(
+                child: Container(width: width * .25, child: Text('')),
+              ),
           ],
         ),
       ),
@@ -188,9 +196,7 @@ class HomePageState extends State<HomePage> {
         borderRadius: BorderRadius.all(Radius.circular(20)),
         boxShadow: <BoxShadow>[
           BoxShadow(
-              offset: Offset(0, 20),
-              blurRadius: 10,
-              color: LightColor.lightpurple.withAlpha(20))
+              offset: Offset(0, 10), blurRadius: 15, color: Colors.black12)
         ],
       ),
       child: ClipRRect(
@@ -501,11 +507,10 @@ class HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     width = MediaQuery.of(context).size.width;
-    // int _currentNav = 0;
     height = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: AppBar(
-        title: Text("WellBe"),
+        title: Center(child: Text("WellBe "),),
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.notifications),
@@ -521,34 +526,42 @@ class HomePageState extends State<HomePage> {
       ),
       body: SingleChildScrollView(
         child: Container(
-            child: (categoryArticles.length + categories.length == 0)
-                ? Column(children: <Widget>[
-                    Center(
-                      heightFactor: 15,
-                      child: CircularProgressIndicator(),
-                    )
-                  ])
-                : Column(
-                    children: <Widget>[
-                      // _header(context),
-                      SizedBox(height: 20),
-                      for (var category in categories)
-                        Column(children: <Widget>[
-                          _categoryRow(category.toUpperCase(),
-                              LightColor.purple, LightColor.darkpurple),
-                          _featuredRowA(context, category)
-                        ]),
-                      SizedBox(height: 30),
-                      Text(
-                        '*End of articles*',
-                        style: TextStyle(
-                            color: Colors.grey[500],
-                            fontStyle: FontStyle.italic,
-                            fontSize: 13),
-                      ),
-                      SizedBox(height: 20),
-                    ],
-                  )),
+          child: (categoryArticles.length + categories.length == 0)
+              ? Column(children: <Widget>[
+                  Center(
+                    heightFactor: 15,
+                    child: CircularProgressIndicator(),
+                  )
+                ])
+              : RefreshIndicator(
+                  child: Container(
+                      height: height,
+                      child: ListView(
+                        children: <Widget>[
+                          // _header(context),
+                          SizedBox(height: 20),
+                          for (var category in categories)
+                            Column(children: <Widget>[
+                              _categoryRow(category.toUpperCase(),
+                                  LightColor.purple, LightColor.darkpurple),
+                              _featuredRowA(context, category)
+                            ]),
+                          Container(
+                            padding: EdgeInsets.only(top: 20, bottom: 100),
+                            child: Center(
+                              child: Text(
+                                '*End of articles*',
+                                style: TextStyle(
+                                    color: Colors.grey[500],
+                                    fontStyle: FontStyle.italic,
+                                    fontSize: 13),
+                              ),
+                            ),
+                          ),
+                        ],
+                      )),
+                  onRefresh: getCategories),
+        ),
       ),
       drawer: AppDrawer(),
     );
