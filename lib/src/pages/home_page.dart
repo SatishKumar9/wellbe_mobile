@@ -9,6 +9,7 @@ import 'package:http/http.dart';
 
 import 'drawer.dart';
 import 'notifications.dart';
+import 'article.dart';
 
 class HomePage extends StatefulWidget {
   @override

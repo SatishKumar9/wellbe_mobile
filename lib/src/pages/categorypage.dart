@@ -360,7 +360,7 @@ class CategoryPageState extends State<CategoryPage> {
           );
         },
         child: Container(
-          padding: const EdgeInsets.all(8),
+          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 15),
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.all(Radius.circular(7)),
@@ -386,7 +386,7 @@ class CategoryPageState extends State<CategoryPage> {
                 ],
               ),
               Image.network(
-                  'https://img.icons8.com/color/40/000000/google-maps.png')
+                  'https://img.icons8.com/color/35/000000/google-maps-new.png')
             ],
           ),
         ),

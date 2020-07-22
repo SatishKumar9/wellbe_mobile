@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'categorypage.dart';
 
 class CategoriesPage extends StatelessWidget {
   final Map categories = {
