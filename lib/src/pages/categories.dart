@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'categorypage.dart';
 
 class CategoriesPage extends StatelessWidget {
   final Map categories = {
     'Brain': 'https://img.icons8.com/fluent/40/000000/brain.png',
-    'Chest': 'https://img.icons8.com/officel/40/000000/chest.png',
+    // 'Chest': 'https://img.icons8.com/officel/40/000000/chest.png',
     'Ear': 'https://img.icons8.com/emoji/40/000000/ear-emoji.png',
     'Eye': 'https://img.icons8.com/cute-clipart/40/000000/visible.png',
     // 'Face': 'https://img.icons8.com/ultraviolet/40/000000/shaven-face.png',
@@ -13,6 +12,7 @@ class CategoriesPage extends StatelessWidget {
     'Kidneys': 'https://img.icons8.com/color/40/000000/kidney.png',
     'Liver': 'https://img.icons8.com/color/40/000000/liver.png',
     'Lungs': 'https://img.icons8.com/fluent/40/000000/lungs.png',
+    'Muscles': 'https://img.icons8.com/color/40/000000/triceps.png',
     'Skin': 'https://img.icons8.com/color/40/000000/skin.png',
     'Spine': 'https://img.icons8.com/color/40/000000/spine.png',
     'Stomach': 'https://img.icons8.com/color/48/000000/stomach.png',
@@ -41,7 +41,7 @@ class CategoriesPage extends StatelessWidget {
                       print('Selected $category');
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => CategoryPage()),
+                        MaterialPageRoute(builder: (context) => CategoryPage(category)),
                       );
                     },
                     child: Container(

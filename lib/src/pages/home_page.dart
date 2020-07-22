@@ -1,6 +1,4 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_smart_course/src/helper/quad_clipper.dart';
 import 'package:flutter_smart_course/src/theme/color/light_color.dart';
 
@@ -10,7 +8,6 @@ import 'dart:convert';
 import 'package:http/http.dart';
 
 import 'drawer.dart';
-import 'article.dart';
 import 'notifications.dart';
 
 class HomePage extends StatefulWidget {
@@ -163,6 +160,7 @@ class HomePageState extends State<HomePage> {
                   chipColor: LightColor.seeBlue,
                   articleTitle: categoryArticles[category][index]["title"],
                   isPrimaryCard: (index == 0) ? true : false,
+                  imgPath: categoryArticles[category][index]["imageUrl"],
                 ),
               ),
             if (categoryArticles[category].length == 1)
@@ -183,6 +181,7 @@ class HomePageState extends State<HomePage> {
       {BuildContext context,
       Color primary = Colors.redAccent,
       String articleTitle,
+      String imgPath,
       String chipText2 = '',
       Widget backWidget,
       Color chipColor = LightColor.orange,
@@ -205,6 +204,15 @@ class HomePageState extends State<HomePage> {
           child: Stack(
             children: <Widget>[
               backWidget,
+              Positioned(
+                top: 20,
+                left: 10,
+                child: CircleAvatar(
+                  radius: 30,
+                  backgroundColor: Colors.grey.shade300,
+                  backgroundImage: NetworkImage(imgPath),
+                ),
+              ),
               Positioned(
                 bottom: 20,
                 left: 10,
@@ -346,11 +354,11 @@ class HomePageState extends State<HomePage> {
                 clipper: QuadClipper(),
                 child: CircleAvatar(
                     backgroundColor: LightColor.orange, radius: 40))),
-        _smallContainer(
-          LightColor.yellow,
-          35,
-          70,
-        )
+        // _smallContainer(
+        //   LightColor.yellow,
+        //   35,
+        //   70,
+        // )
       ],
     );
   }
@@ -367,7 +375,7 @@ class HomePageState extends State<HomePage> {
             backgroundColor: secondary,
           ),
         ),
-        _smallContainer(LightColor.yellow, 18, 35, radius: 12),
+        // _smallContainer(LightColor.yellow, 18, 35, radius: 12),
         Positioned(
           top: 130,
           left: -50,
@@ -510,7 +518,9 @@ class HomePageState extends State<HomePage> {
     height = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: AppBar(
-        title: Center(child: Text("WellBe "),),
+        title: Center(
+          child: Text("WellBe "),
+        ),
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.notifications),
