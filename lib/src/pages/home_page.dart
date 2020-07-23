@@ -114,7 +114,7 @@ class HomePageState extends State<HomePage> {
   ) {
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 20),
-      height: 30,
+      // height: 20,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
@@ -123,7 +123,7 @@ class HomePageState extends State<HomePage> {
             style: TextStyle(
                 color: LightColor.titleTextColor, fontWeight: FontWeight.bold),
           ),
-          _chip("See all", primary)
+          // _chip("See all", primary)
         ],
       ),
     );

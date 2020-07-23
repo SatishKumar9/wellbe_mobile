@@ -85,22 +85,22 @@ class UserRegistrationPageState extends State<UserRegistrationPage> {
 
 	decor(text, _validate){
 		return InputDecoration(
-			// border: OutlineInputBorder(),
+      border: InputBorder.none,
 			labelText: text,
 			filled: true,
-			labelStyle: TextStyle(
-				color: Colors.white,
-			) ,
+			// labelStyle: TextStyle(
+			// 	color: Colors.grey,
+			// ) ,
 			errorStyle: TextStyle(
-				color: Colors.white,
+				color: Colors.red,
 			),
 			errorBorder: OutlineInputBorder(
-				borderSide: const BorderSide(color: Colors.white, width: 2.0),
-				borderRadius: BorderRadius.circular(20.0),
+				borderSide: const BorderSide(color: Colors.white, width: 1.0),
+				borderRadius: BorderRadius.circular(10.0),
 			),
 			focusedBorder: OutlineInputBorder(
-				borderSide: const BorderSide(color: Colors.white, width: 2.0),
-				borderRadius: BorderRadius.circular(20.0),
+				borderSide: const BorderSide(color: Colors.blue, width: 2.0),
+				borderRadius: BorderRadius.circular(10.0),
 			),
 		);
 	}
@@ -111,7 +111,7 @@ class UserRegistrationPageState extends State<UserRegistrationPage> {
 		final _formKey = GlobalKey<FormState>();
 		return Scaffold(
 			appBar: AppBar(
-				title: Text("WellBE"),
+				title: Text("Sign Up"),
 			),
 			drawer: AppDrawer(),
 			body: SafeArea(
@@ -126,11 +126,11 @@ class UserRegistrationPageState extends State<UserRegistrationPage> {
 									"User Registration",
 									textAlign: TextAlign.center,
 									style: TextStyle(
-										fontSize: 36,
-										color: Colors.white,
+										fontSize: 30,
+										color: Colors.blue,
 									),
 								),
-								SizedBox(height: 40.0),
+								SizedBox(height: 20.0),
 								error ? 
 									SizedBox(
 										height: 40.0,
@@ -146,7 +146,7 @@ class UserRegistrationPageState extends State<UserRegistrationPage> {
 										return null;
 									},
 									decoration: decor("Name", _name.text.isNotEmpty),
-									style: TextStyle(color: Colors.white),
+									// style: TextStyle(color: Colors.white),
 								),
 								SizedBox(height: 12.0),
 								new TextFormField(
@@ -158,7 +158,7 @@ class UserRegistrationPageState extends State<UserRegistrationPage> {
 										return null;
 									},
 									decoration: decor("Aadhar Number", _adnum.text.isNotEmpty),
-									style: TextStyle(color: Colors.white),
+									// style: TextStyle(color: Colors.white),
 								),
 								SizedBox(height: 12.0),
 								Container(
@@ -167,7 +167,7 @@ class UserRegistrationPageState extends State<UserRegistrationPage> {
 											Text(
 												'Gender: ',
 												style: TextStyle(
-													color: Colors.white,
+													// color: Colors.white,
 												),
 											),
 											SizedBox(width: 20.0),
@@ -186,14 +186,14 @@ class UserRegistrationPageState extends State<UserRegistrationPage> {
 											),
 										],
 									),
-									color: Colors.transparent,
+									color: Colors.grey[200],
 								),
 								SizedBox(height: 12.0),
 								Text(
 									"Date of Birth",
 									style: TextStyle(
-										color: Colors.white,
-										fontSize: 20.0,
+										color: Colors.black,
+										// fontSize: 20.0,
 									),
 								),
 								SizedBox(height: 7.5),
@@ -212,13 +212,13 @@ class UserRegistrationPageState extends State<UserRegistrationPage> {
 										mainAxisAlignment: MainAxisAlignment.center,
 									), 
 									
-									color: Colors.transparent,
+									color: Colors.grey[200],
 								),
 								SizedBox(height: 20.0),
 								Text(
 									"Address",
 									style: TextStyle(
-										color: Colors.white,
+										// color: Colors.white,
 										fontSize: 20.0,
 									),
 								),
@@ -232,7 +232,7 @@ class UserRegistrationPageState extends State<UserRegistrationPage> {
 										return null;
 									},
 									decoration: decor("Address Lane 1", _ad1.text.isNotEmpty),
-									style: TextStyle(color: Colors.white),
+									// style: TextStyle(color: Colors.white),
 								),
 								SizedBox(height: 12.0),
 								new TextFormField(
@@ -244,7 +244,7 @@ class UserRegistrationPageState extends State<UserRegistrationPage> {
 										return null;
 									},
 									decoration: decor("Address Lane 2", _ad2.text.isNotEmpty),
-									style: TextStyle(color: Colors.white),
+									// style: TextStyle(color: Colors.white),
 								),
 								SizedBox(height: 12.0),
 								new TextFormField(
@@ -256,7 +256,7 @@ class UserRegistrationPageState extends State<UserRegistrationPage> {
 										return null;
 									},
 									decoration: decor("Land Mark", _lm.text.isNotEmpty),
-									style: TextStyle(color: Colors.white),
+									// style: TextStyle(color: Colors.white),
 								),
 								SizedBox(height: 12.0),
 								new TextFormField(
@@ -268,7 +268,7 @@ class UserRegistrationPageState extends State<UserRegistrationPage> {
 										return null;
 									},
 									decoration: decor("Area", _area.text.isNotEmpty),
-									style: TextStyle(color: Colors.white),
+									// style: TextStyle(color: Colors.white),
 								),
 								SizedBox(height: 12.0),
 								new TextFormField(
@@ -280,7 +280,7 @@ class UserRegistrationPageState extends State<UserRegistrationPage> {
 										return null;
 									},
 									decoration: decor("City", _city.text.isNotEmpty),
-									style: TextStyle(color: Colors.white),
+									// style: TextStyle(color: Colors.white),
 								),
 								SizedBox(height: 12.0),
 								new TextFormField(
@@ -292,7 +292,7 @@ class UserRegistrationPageState extends State<UserRegistrationPage> {
 										return null;
 									},
 									decoration: decor("District", _dist.text.isNotEmpty),
-									style: TextStyle(color: Colors.white),
+									// style: TextStyle(color: Colors.white),
 								),
 								SizedBox(height: 12.0),
 								new TextFormField(
@@ -304,7 +304,7 @@ class UserRegistrationPageState extends State<UserRegistrationPage> {
 										return null;
 									},
 									decoration: decor("State", _state.text.isNotEmpty),
-									style: TextStyle(color: Colors.white),
+									// style: TextStyle(color: Colors.white),
 								),
 								SizedBox(height: 12.0),
 								new TextFormField(
@@ -316,12 +316,12 @@ class UserRegistrationPageState extends State<UserRegistrationPage> {
 										return null;
 									},
 									decoration: decor("Pin Code", _pcd.text.isNotEmpty),
-									style: TextStyle(color: Colors.white),
+									// style: TextStyle(color: Colors.white),
 								),
 								SizedBox(height: 12.0),
 								ButtonBar(
 									children: <Widget>[
-										OutlineButton(
+										RaisedButton(
 											child: Text(
 												"Register",
 												style: TextStyle(color: Colors.white),
@@ -330,8 +330,9 @@ class UserRegistrationPageState extends State<UserRegistrationPage> {
 												horizontal: 10.0,
 												vertical: 7.5
 											),
-											borderSide: BorderSide(color: Colors.white),
-											shape: StadiumBorder(),
+											// borderSide: BorderSide(color: Colors.white),
+											// shape: StadiumBorder(),
+                      color: Colors.blue,
 											onPressed: () {
 												print(_formKey.currentState.validate());
 												(_formKey.currentState.validate()) ? register_user() : null;
@@ -344,13 +345,13 @@ class UserRegistrationPageState extends State<UserRegistrationPage> {
 						),
 						autovalidate: true,
 					),
-					decoration: BoxDecoration(
-						gradient: LinearGradient(
-							begin: Alignment.topRight,
-							end: Alignment.bottomLeft,
-							colors: [Colors.blue, Colors.teal]
-						)
-					),
+					// decoration: BoxDecoration(
+					// 	gradient: LinearGradient(
+					// 		begin: Alignment.topRight,
+					// 		end: Alignment.bottomLeft,
+					// 		colors: [Colors.blue, Colors.teal]
+					// 	)
+					// ),
 
 				),
 			),

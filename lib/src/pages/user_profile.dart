@@ -95,22 +95,22 @@ class UserProfilePageState extends State<UserProfilePage> {
 
   decor(text) {
     return InputDecoration(
-      // border: OutlineInputBorder(),
+      border: InputBorder.none,
       labelText: text,
       filled: true,
-      labelStyle: TextStyle(
-        color: Colors.white,
-      ),
+      // labelStyle: TextStyle(
+      //   color: Colors.grey,
+      // ),
       errorStyle: TextStyle(
         color: Colors.white,
       ),
       errorBorder: OutlineInputBorder(
-        borderSide: const BorderSide(color: Colors.white, width: 2.0),
-        borderRadius: BorderRadius.circular(20.0),
+        borderSide: const BorderSide(color: Colors.white, width: 1.0),
+        borderRadius: BorderRadius.circular(10.0),
       ),
       focusedBorder: OutlineInputBorder(
-        borderSide: const BorderSide(color: Colors.white, width: 2.0),
-        borderRadius: BorderRadius.circular(20.0),
+        borderSide: const BorderSide(color: Colors.blue, width: 2.0),
+        borderRadius: BorderRadius.circular(10.0),
       ),
     );
   }
@@ -209,7 +209,8 @@ class UserProfilePageState extends State<UserProfilePage> {
                         textAlign: TextAlign.left,
                         style: TextStyle(
                           fontSize: 20,
-                          // color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.red,
                         ),
                       ),
                       Padding(
@@ -217,7 +218,7 @@ class UserProfilePageState extends State<UserProfilePage> {
                               const EdgeInsets.only(left: 12.0, right: 12.0),
                           child: Icon(
                             Icons.exit_to_app,
-                            // color: Colors.white,
+                            color: Colors.red,
                             size: 18.0,
                           ))
                     ],
@@ -316,21 +317,7 @@ class UserProfilePageState extends State<UserProfilePage> {
                     }
                     return null;
                   },
-                  decoration: InputDecoration(
-                    border: InputBorder.none,
-                    labelText: "Address Lane 1",
-                    filled: true,
-                    errorBorder: OutlineInputBorder(
-                      borderSide:
-                          const BorderSide(color: Colors.blue, width: 2.0),
-                      borderRadius: BorderRadius.circular(10.0),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide:
-                          const BorderSide(color: Colors.blue, width: 2.0),
-                      borderRadius: BorderRadius.circular(10.0),
-                    ),
-                  ),
+                  decoration: decor('Address Line 1')
                   // style: TextStyle(color: Colors.white),
                 ),
                 SizedBox(height: 12.0),
@@ -342,21 +329,7 @@ class UserProfilePageState extends State<UserProfilePage> {
                     }
                     return null;
                   },
-                  decoration: InputDecoration(
-                    border: InputBorder.none,
-                    labelText: "Address Lane 2",
-                    filled: true,
-                    errorBorder: OutlineInputBorder(
-                      borderSide:
-                          const BorderSide(color: Colors.blue, width: 2.0),
-                      borderRadius: BorderRadius.circular(10.0),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide:
-                          const BorderSide(color: Colors.blue, width: 2.0),
-                      borderRadius: BorderRadius.circular(10.0),
-                    ),
-                  ),
+                  decoration: decor('Address Line 2')
                   // style: TextStyle(color: Colors.white),
                 ),
                 SizedBox(height: 12.0),
@@ -368,21 +341,7 @@ class UserProfilePageState extends State<UserProfilePage> {
                     }
                     return null;
                   },
-                  decoration: InputDecoration(
-                    border: InputBorder.none,
-                    labelText: "Landmark",
-                    filled: true,
-                    errorBorder: OutlineInputBorder(
-                      borderSide:
-                          const BorderSide(color: Colors.blue, width: 2.0),
-                      borderRadius: BorderRadius.circular(10.0),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide:
-                          const BorderSide(color: Colors.blue, width: 2.0),
-                      borderRadius: BorderRadius.circular(10.0),
-                    ),
-                  ),
+                  decoration: decor('Landmark')
                   // style: TextStyle(color: Colors.white),
                 ),
                 SizedBox(height: 12.0),
@@ -394,21 +353,7 @@ class UserProfilePageState extends State<UserProfilePage> {
                     }
                     return null;
                   },
-                  decoration: InputDecoration(
-                    border: InputBorder.none,
-                    labelText: "Area",
-                    filled: true,
-                    errorBorder: OutlineInputBorder(
-                      borderSide:
-                          const BorderSide(color: Colors.blue, width: 2.0),
-                      borderRadius: BorderRadius.circular(10.0),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide:
-                          const BorderSide(color: Colors.blue, width: 2.0),
-                      borderRadius: BorderRadius.circular(10.0),
-                    ),
-                  ),
+                  decoration: decor('Area')
                   // style: TextStyle(color: Colors.white),
                 ),
                 SizedBox(height: 12.0),
@@ -420,21 +365,7 @@ class UserProfilePageState extends State<UserProfilePage> {
                     }
                     return null;
                   },
-                  decoration: InputDecoration(
-                    border: InputBorder.none,
-                    labelText: "City",
-                    filled: true,
-                    errorBorder: OutlineInputBorder(
-                      borderSide:
-                          const BorderSide(color: Colors.blue, width: 2.0),
-                      borderRadius: BorderRadius.circular(10.0),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide:
-                          const BorderSide(color: Colors.blue, width: 2.0),
-                      borderRadius: BorderRadius.circular(10.0),
-                    ),
-                  ),
+                  decoration: decor('City')
                   // style: TextStyle(color: Colors.white),
                 ),
                 SizedBox(height: 12.0),
@@ -446,21 +377,7 @@ class UserProfilePageState extends State<UserProfilePage> {
                     }
                     return null;
                   },
-                  decoration: InputDecoration(
-                    border: InputBorder.none,
-                    labelText: "District",
-                    filled: true,
-                    errorBorder: OutlineInputBorder(
-                      borderSide:
-                          const BorderSide(color: Colors.blue, width: 2.0),
-                      borderRadius: BorderRadius.circular(10.0),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide:
-                          const BorderSide(color: Colors.blue, width: 2.0),
-                      borderRadius: BorderRadius.circular(10.0),
-                    ),
-                  ),
+                  decoration: decor('District')
                   // style: TextStyle(color: Colors.white),
                 ),
                 SizedBox(height: 12.0),
@@ -472,21 +389,7 @@ class UserProfilePageState extends State<UserProfilePage> {
                     }
                     return null;
                   },
-                  decoration: InputDecoration(
-                    border: InputBorder.none,
-                    labelText: "State",
-                    filled: true,
-                    errorBorder: OutlineInputBorder(
-                      borderSide:
-                          const BorderSide(color: Colors.blue, width: 2.0),
-                      borderRadius: BorderRadius.circular(10.0),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide:
-                          const BorderSide(color: Colors.blue, width: 2.0),
-                      borderRadius: BorderRadius.circular(10.0),
-                    ),
-                  ),
+                  decoration: decor('State')
                   // style: TextStyle(color: Colors.white),
                 ),
                 SizedBox(height: 12.0),
@@ -500,21 +403,7 @@ class UserProfilePageState extends State<UserProfilePage> {
                     }
                     return null;
                   },
-                  decoration: InputDecoration(
-                    border: InputBorder.none,
-                    labelText: "Pin Code",
-                    filled: true,
-                    errorBorder: OutlineInputBorder(
-                      borderSide:
-                          const BorderSide(color: Colors.blue, width: 2.0),
-                      borderRadius: BorderRadius.circular(10.0),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide:
-                          const BorderSide(color: Colors.blue, width: 2.0),
-                      borderRadius: BorderRadius.circular(10.0),
-                    ),
-                  ),
+                  decoration: decor('Pin Code')
                   // style: TextStyle(color: Colors.white),
                 ),
                 SizedBox(height: 12.0),

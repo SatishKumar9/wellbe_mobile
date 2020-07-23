@@ -34,7 +34,7 @@ class Article extends StatelessWidget {
                   child: Text(
                     article["title"],
                     style: TextStyle(
-                      fontSize: 18,
+                      fontSize: 22,
                     ),
                   ),
                 ),
@@ -48,11 +48,11 @@ class Article extends StatelessWidget {
             ),
           ),
           /*3*/
-          Icon(
-            Icons.bookmark_border,
-            color: Colors.grey[500],
-          ),
-          Text('41'),
+          // Icon(
+          //   Icons.bookmark_border,
+          //   color: Colors.grey[500],
+          // ),
+          // Text('41'),
         ],
       ),
     );
@@ -83,7 +83,7 @@ class Article extends StatelessWidget {
             (article["intro"] != null) ? Text(
               article["intro"],
               softWrap: true,
-            ) : '',
+            ) : Text(''),
             Text(
               article["desc"],
               softWrap: true,
