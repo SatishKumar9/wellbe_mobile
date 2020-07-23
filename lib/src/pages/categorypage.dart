@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_smart_course/src/helper/quad_clipper.dart';
-import 'package:flutter_smart_course/src/pages/googlemap.dart';
 import 'package:flutter_smart_course/src/theme/color/light_color.dart';
 import 'package:flutter_smart_course/src/theme/theme.dart';
 
 import 'dart:convert';
 import 'package:http/http.dart';
 
-import 'googlemap.dart';
 import 'article.dart';
 import 'places_search_map.dart';
 
