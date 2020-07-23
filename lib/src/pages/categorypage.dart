@@ -9,6 +9,7 @@ import 'package:http/http.dart';
 
 import 'googlemap.dart';
 import 'article.dart';
+import 'places_search_map.dart';
 
 class CategoryPage extends StatefulWidget {
   final String category;
@@ -354,7 +355,7 @@ class CategoryPageState extends State<CategoryPage> {
           print('clicked maps');
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => GooglemapPage(category)),
+            MaterialPageRoute(builder: (context) => PlacesSearchMapSample(category)),
           );
         },
         child: Container(
