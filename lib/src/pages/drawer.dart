@@ -134,23 +134,23 @@ class _drawer extends State<AppDrawer> {
                   new MaterialPageRoute(builder: (context) => CategoriesPage()));
             },
           ),
-          ListTile(
-            title: Row(
-              children: <Widget>[
-                Icon(Icons.bookmark),
-                Padding(
-                  padding: EdgeInsets.only(left: 8.0),
-                  child: Text('Bookmarks'),
-                )
-              ],
-            ),
-            onTap: () {
-              Navigator.push(
-                context,
-                new MaterialPageRoute(builder: (context) => RecomendedPage()),
-              );
-            },
-          ),
+          // ListTile(
+          //   title: Row(
+          //     children: <Widget>[
+          //       Icon(Icons.bookmark),
+          //       Padding(
+          //         padding: EdgeInsets.only(left: 8.0),
+          //         child: Text('Bookmarks'),
+          //       )
+          //     ],
+          //   ),
+          //   onTap: () {
+          //     Navigator.push(
+          //       context,
+          //       new MaterialPageRoute(builder: (context) => RecomendedPage()),
+          //     );
+          //   },
+          // ),
           ListTile(
             title: Row(
               children: <Widget>[

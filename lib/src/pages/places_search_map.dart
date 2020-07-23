@@ -43,7 +43,6 @@ class _PlacesSearchMapSample extends State<PlacesSearchMapSample> {
   void initState() {
     super.initState();
     _getLocation();
-    searchNearby(latitude, longitude);
   }
 
   Future<void> _getLocation() async {
@@ -58,6 +57,7 @@ class _PlacesSearchMapSample extends State<PlacesSearchMapSample> {
       latitude = currentLocation.latitude;
       longitude = currentLocation.longitude;
     });
+    searchNearby(latitude, longitude);
   }
 
   @override
@@ -97,7 +97,6 @@ class _PlacesSearchMapSample extends State<PlacesSearchMapSample> {
 
   void searchNearby(double latitude, double longitude) async {
     print("searching nearby $latitude $longitude");
-    Duration(seconds: 2);
     setState(() {
       markers.clear();
     });
