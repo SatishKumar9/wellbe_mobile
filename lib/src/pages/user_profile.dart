@@ -183,24 +183,24 @@ class UserProfilePageState extends State<UserProfilePage> {
     final _formKey = GlobalKey<FormState>();
     return Scaffold(
       appBar: AppBar(
-        title: Text("WellBE"),
+        title: Text("Your Profile"),
       ),
-      drawer: AppDrawer(),
+      // drawer: AppDrawer(),
       body: SafeArea(
         child: Container(
           child: Form(
             child: ListView(
               padding: EdgeInsets.symmetric(horizontal: 24.0),
               children: <Widget>[
-                SizedBox(height: 50.0),
-                Text(
-                  "User Profile",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 36,
-                    color: Colors.white,
-                  ),
-                ),
+                SizedBox(height: 20.0),
+                // Text(
+                //   "User Profile",
+                //   textAlign: TextAlign.center,
+                //   style: TextStyle(
+                //     fontSize: 36,
+                //     color: Colors.white,
+                //   ),
+                // ),
                 FlatButton(
                   child: Row(
                     children: <Widget>[
@@ -209,7 +209,7 @@ class UserProfilePageState extends State<UserProfilePage> {
                         textAlign: TextAlign.left,
                         style: TextStyle(
                           fontSize: 20,
-                          color: Colors.white,
+                          // color: Colors.white,
                         ),
                       ),
                       Padding(
@@ -217,7 +217,7 @@ class UserProfilePageState extends State<UserProfilePage> {
                               const EdgeInsets.only(left: 12.0, right: 12.0),
                           child: Icon(
                             Icons.exit_to_app,
-                            color: Colors.white,
+                            // color: Colors.white,
                             size: 18.0,
                           ))
                     ],
@@ -227,44 +227,87 @@ class UserProfilePageState extends State<UserProfilePage> {
                     logout_user();
                   },
                 ),
-                SizedBox(height: 40.0),
+                SizedBox(height: 20.0),
                 Text(
-                  "Details",
+                  "Profile Details",
                   style: TextStyle(
-                    color: Colors.white,
+                    // color: Colors.white,
                     fontSize: 20.0,
                   ),
                 ),
-                SizedBox(height: 20.0),
+                SizedBox(height: 10.0),
                 TextFormField(
                   enabled: false,
                   controller: _name,
-                  decoration: decor("Name"),
-                  style: TextStyle(color: Colors.white),
+                  decoration: InputDecoration(
+                    border: InputBorder.none,
+                    labelText: "Name",
+                    filled: true,
+                    errorBorder: OutlineInputBorder(
+                      borderSide:
+                          const BorderSide(color: Colors.blue, width: 2.0),
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide:
+                          const BorderSide(color: Colors.blue, width: 2.0),
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
+                  ),
+
+                  // style: TextStyle(color: Colors.white),
                 ),
-                SizedBox(height: 12.0),
+                SizedBox(height: 10.0),
                 TextFormField(
                   enabled: false,
                   controller: _gdr,
-                  decoration: decor("Gender"),
-                  style: TextStyle(color: Colors.white),
+                  decoration: InputDecoration(
+                    border: InputBorder.none,
+                    labelText: "Gender",
+                    filled: true,
+                    errorBorder: OutlineInputBorder(
+                      borderSide:
+                          const BorderSide(color: Colors.blue, width: 2.0),
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide:
+                          const BorderSide(color: Colors.blue, width: 2.0),
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
+                  ),
+                  // style: TextStyle(color: Colors.white),
                 ),
-                SizedBox(height: 12.0),
+                SizedBox(height: 10.0),
                 TextFormField(
                   enabled: false,
                   controller: _dob,
-                  decoration: decor("Date of Birth"),
-                  style: TextStyle(color: Colors.white),
+                  decoration: InputDecoration(
+                    border: InputBorder.none,
+                    labelText: "Date of Birth",
+                    filled: true,
+                    errorBorder: OutlineInputBorder(
+                      borderSide:
+                          const BorderSide(color: Colors.blue, width: 2.0),
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide:
+                          const BorderSide(color: Colors.blue, width: 2.0),
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
+                  ),
+                  // style: TextStyle(color: Colors.white),
                 ),
-                SizedBox(height: 27.5),
+                SizedBox(height: 15.0),
                 Text(
                   "Address",
                   style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 20.0,
+                    // color: Colors.white,
+                    fontSize: 18.0,
                   ),
                 ),
-                SizedBox(height: 20.0),
+                SizedBox(height: 15.0),
                 new TextFormField(
                   controller: _ad1,
                   validator: (value) {
@@ -273,8 +316,22 @@ class UserProfilePageState extends State<UserProfilePage> {
                     }
                     return null;
                   },
-                  decoration: decor("Address Lane 1"),
-                  style: TextStyle(color: Colors.white),
+                  decoration: InputDecoration(
+                    border: InputBorder.none,
+                    labelText: "Address Lane 1",
+                    filled: true,
+                    errorBorder: OutlineInputBorder(
+                      borderSide:
+                          const BorderSide(color: Colors.blue, width: 2.0),
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide:
+                          const BorderSide(color: Colors.blue, width: 2.0),
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
+                  ),
+                  // style: TextStyle(color: Colors.white),
                 ),
                 SizedBox(height: 12.0),
                 new TextFormField(
@@ -285,8 +342,22 @@ class UserProfilePageState extends State<UserProfilePage> {
                     }
                     return null;
                   },
-                  decoration: decor("Address Lane 2"),
-                  style: TextStyle(color: Colors.white),
+                  decoration: InputDecoration(
+                    border: InputBorder.none,
+                    labelText: "Address Lane 2",
+                    filled: true,
+                    errorBorder: OutlineInputBorder(
+                      borderSide:
+                          const BorderSide(color: Colors.blue, width: 2.0),
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide:
+                          const BorderSide(color: Colors.blue, width: 2.0),
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
+                  ),
+                  // style: TextStyle(color: Colors.white),
                 ),
                 SizedBox(height: 12.0),
                 new TextFormField(
@@ -297,8 +368,22 @@ class UserProfilePageState extends State<UserProfilePage> {
                     }
                     return null;
                   },
-                  decoration: decor("Land Mark"),
-                  style: TextStyle(color: Colors.white),
+                  decoration: InputDecoration(
+                    border: InputBorder.none,
+                    labelText: "Landmark",
+                    filled: true,
+                    errorBorder: OutlineInputBorder(
+                      borderSide:
+                          const BorderSide(color: Colors.blue, width: 2.0),
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide:
+                          const BorderSide(color: Colors.blue, width: 2.0),
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
+                  ),
+                  // style: TextStyle(color: Colors.white),
                 ),
                 SizedBox(height: 12.0),
                 new TextFormField(
@@ -309,8 +394,22 @@ class UserProfilePageState extends State<UserProfilePage> {
                     }
                     return null;
                   },
-                  decoration: decor("Area"),
-                  style: TextStyle(color: Colors.white),
+                  decoration: InputDecoration(
+                    border: InputBorder.none,
+                    labelText: "Area",
+                    filled: true,
+                    errorBorder: OutlineInputBorder(
+                      borderSide:
+                          const BorderSide(color: Colors.blue, width: 2.0),
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide:
+                          const BorderSide(color: Colors.blue, width: 2.0),
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
+                  ),
+                  // style: TextStyle(color: Colors.white),
                 ),
                 SizedBox(height: 12.0),
                 new TextFormField(
@@ -321,8 +420,22 @@ class UserProfilePageState extends State<UserProfilePage> {
                     }
                     return null;
                   },
-                  decoration: decor("City"),
-                  style: TextStyle(color: Colors.white),
+                  decoration: InputDecoration(
+                    border: InputBorder.none,
+                    labelText: "City",
+                    filled: true,
+                    errorBorder: OutlineInputBorder(
+                      borderSide:
+                          const BorderSide(color: Colors.blue, width: 2.0),
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide:
+                          const BorderSide(color: Colors.blue, width: 2.0),
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
+                  ),
+                  // style: TextStyle(color: Colors.white),
                 ),
                 SizedBox(height: 12.0),
                 new TextFormField(
@@ -333,8 +446,22 @@ class UserProfilePageState extends State<UserProfilePage> {
                     }
                     return null;
                   },
-                  decoration: decor("District"),
-                  style: TextStyle(color: Colors.white),
+                  decoration: InputDecoration(
+                    border: InputBorder.none,
+                    labelText: "District",
+                    filled: true,
+                    errorBorder: OutlineInputBorder(
+                      borderSide:
+                          const BorderSide(color: Colors.blue, width: 2.0),
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide:
+                          const BorderSide(color: Colors.blue, width: 2.0),
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
+                  ),
+                  // style: TextStyle(color: Colors.white),
                 ),
                 SizedBox(height: 12.0),
                 new TextFormField(
@@ -345,8 +472,22 @@ class UserProfilePageState extends State<UserProfilePage> {
                     }
                     return null;
                   },
-                  decoration: decor("State"),
-                  style: TextStyle(color: Colors.white),
+                  decoration: InputDecoration(
+                    border: InputBorder.none,
+                    labelText: "State",
+                    filled: true,
+                    errorBorder: OutlineInputBorder(
+                      borderSide:
+                          const BorderSide(color: Colors.blue, width: 2.0),
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide:
+                          const BorderSide(color: Colors.blue, width: 2.0),
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
+                  ),
+                  // style: TextStyle(color: Colors.white),
                 ),
                 SizedBox(height: 12.0),
                 new TextFormField(
@@ -359,21 +500,36 @@ class UserProfilePageState extends State<UserProfilePage> {
                     }
                     return null;
                   },
-                  decoration: decor("Pin Code"),
-                  style: TextStyle(color: Colors.white),
+                  decoration: InputDecoration(
+                    border: InputBorder.none,
+                    labelText: "Pin Code",
+                    filled: true,
+                    errorBorder: OutlineInputBorder(
+                      borderSide:
+                          const BorderSide(color: Colors.blue, width: 2.0),
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide:
+                          const BorderSide(color: Colors.blue, width: 2.0),
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
+                  ),
+                  // style: TextStyle(color: Colors.white),
                 ),
                 SizedBox(height: 12.0),
                 ButtonBar(
                   children: <Widget>[
-                    OutlineButton(
+                    RaisedButton(
                       child: Text(
                         "Update",
                         style: TextStyle(color: Colors.white),
                       ),
                       padding:
                           EdgeInsets.symmetric(horizontal: 10.0, vertical: 7.5),
-                      borderSide: BorderSide(color: Colors.white),
-                      shape: StadiumBorder(),
+                      // borderSide: BorderSide(color: Colors.white),
+                      // shape: StadiumBorder(),
+                      color: Colors.blue,
                       onPressed: () {
                         profile_update_address();
                       },
@@ -385,11 +541,11 @@ class UserProfilePageState extends State<UserProfilePage> {
             ),
             autovalidate: true,
           ),
-          decoration: BoxDecoration(
-              gradient: LinearGradient(
-                  begin: Alignment.topRight,
-                  end: Alignment.bottomLeft,
-                  colors: [Colors.blue, Colors.teal])),
+          // decoration: BoxDecoration(
+          //     gradient: LinearGradient(
+          //         begin: Alignment.topRight,
+          //         end: Alignment.bottomLeft,
+          //         colors: [Colors.blue, Colors.teal])),
         ),
       ),
     );

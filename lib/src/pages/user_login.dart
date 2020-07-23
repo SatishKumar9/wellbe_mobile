@@ -73,8 +73,8 @@ class _UserLoginPageState extends State<UserLoginPage> {
           context: context,
           builder: (BuildContext context) {
             return new AlertDialog(
-              title: new Text("Login Success"),
-              content: new Text("Your Login was successful"),
+              title: new Text("Login Successful!"),
+              content: new Text("You are now logged with phone number $phone_no"),
               actions: <Widget>[
                 new FlatButton(
                     onPressed: () {
@@ -97,14 +97,14 @@ class _UserLoginPageState extends State<UserLoginPage> {
         error_msg = "Incorrect OTP";
       });
     } else if (responseBody == -1) {
-      print("NO user registered");
+      print("No user registered with entered phone number");
       showDialog(
           context: context,
           builder: (BuildContext context) {
             return new AlertDialog(
               title: new Text("No User "),
               content: new Text(
-                  "You need to register this number for usage of our servies."),
+                  "You need to register with this phone number for usage of our servies."),
               actions: <Widget>[
                 new FlatButton(
                     onPressed: () {
@@ -133,10 +133,10 @@ class _UserLoginPageState extends State<UserLoginPage> {
     final _formKey = GlobalKey<FormState>();
     return Scaffold(
       key: _scaffoldKey,
-      appBar: AppBar(
-        title: Text("WellBe"),
-      ),
-      drawer: AppDrawer(),
+      // appBar: AppBar(
+      //   title: Text("Login"),
+      // ),
+      // drawer: AppDrawer(),
       body: SafeArea(
         child: new Container(
           child: new Form(
@@ -146,17 +146,31 @@ class _UserLoginPageState extends State<UserLoginPage> {
               children: <Widget>[
                 SizedBox(height: 60.0),
                 Text(
-                  "Login",
-                  textAlign: TextAlign.center,
+                  "Welcome to",
+                  textAlign: TextAlign.left,
                   style: TextStyle(
-                    fontSize: 48,
-                    color: Colors.white,
+                    fontSize: 18,
+                    // color: Colors.white,
                   ),
                 ),
-                SizedBox(height: 40.0,),
+                Text(
+                  "WellBe",
+                  textAlign: TextAlign.left,
+                  style: TextStyle(fontSize: 46, fontWeight: FontWeight.bold
+                      // color: Colors.white,
+                      ),
+                ),
+                SizedBox(height: 40.0),
+                Text(
+                  "Login with your phone number to continue",
+                  textAlign: TextAlign.left,
+                ),
+                SizedBox(
+                  height: 20.0,
+                ),
                 new TextFormField(
                   controller: _phoneNoChannge,
-                  style: TextStyle(color: Colors.white),
+                  // style: TextStyle(color: Colors.white),
                   validator: (value) {
                     if (value.isEmpty ||
                         (int.tryParse(value) == null) ||
@@ -170,35 +184,29 @@ class _UserLoginPageState extends State<UserLoginPage> {
                     border: InputBorder.none,
                     labelText: "Phone Number",
                     filled: true,
-                    labelStyle: TextStyle(
-                      color: Colors.white,
-                    ),
-                    errorStyle: TextStyle(
-                      color: Colors.white,
-                    ),
                     errorBorder: OutlineInputBorder(
                       borderSide:
-                          const BorderSide(color: Colors.white, width: 2.0),
-                      borderRadius: BorderRadius.circular(20.0),
+                          const BorderSide(color: Colors.blue, width: 2.0),
+                      borderRadius: BorderRadius.circular(10.0),
                     ),
                     focusedBorder: OutlineInputBorder(
                       borderSide:
-                          const BorderSide(color: Colors.white, width: 2.0),
-                      borderRadius: BorderRadius.circular(20.0),
+                          const BorderSide(color: Colors.blue, width: 2.0),
+                      borderRadius: BorderRadius.circular(10.0),
                     ),
                   ),
                 ),
                 SizedBox(height: 12.0),
                 new ButtonBar(
                   children: <Widget>[
-                    new OutlineButton(
+                    new RaisedButton(
                       child: Text(
                         "Send OTP",
                         style: TextStyle(color: Colors.white),
                       ),
                       padding:
                           EdgeInsets.symmetric(horizontal: 10.0, vertical: 7.5),
-                      highlightColor: Colors.white,
+                      highlightColor: Colors.blue,
                       onPressed: () {
                         phone_no = _phoneNoChannge.text;
                         en_otp ? sendOtpUser(phone_no) : null;
@@ -206,8 +214,9 @@ class _UserLoginPageState extends State<UserLoginPage> {
                           _phvalid = _phoneNoChannge.text.isNotEmpty;
                         });
                       },
-                      borderSide: BorderSide(color: Colors.white),
-                      shape: StadiumBorder(),
+                      color: Colors.blue,
+                      // borderSide: BorderSide(color: Colors.white),
+                      // shape: StadiumBorder(),
                     )
                   ],
                   alignment: MainAxisAlignment.center,
@@ -217,13 +226,13 @@ class _UserLoginPageState extends State<UserLoginPage> {
                         height: 40.0,
                         child: Text(
                           error_msg,
-                          style: TextStyle(color: Colors.white),
+                          // style: TextStyle(color: Colors.white),
                         ))
-                    : SizedBox(height: 1.0),
+                    : SizedBox(height: 5.0),
                 new TextFormField(
                   enabled: en_otp,
                   controller: _otpChannge,
-                  style: TextStyle(color: Colors.white),
+                  // style: TextStyle(color: Colors.white),
                   validator: (value) {
                     if (value.isEmpty ||
                         (int.tryParse(value) == null) ||
@@ -237,21 +246,15 @@ class _UserLoginPageState extends State<UserLoginPage> {
                     border: InputBorder.none,
                     labelText: "OTP",
                     filled: true,
-                    labelStyle: TextStyle(
-                      color: Colors.white,
-                    ),
-                    errorStyle: TextStyle(
-                      color: Colors.white,
-                    ),
                     errorBorder: OutlineInputBorder(
                       borderSide:
-                          const BorderSide(color: Colors.grey, width: 2.0),
-                      borderRadius: BorderRadius.circular(20.0),
+                          const BorderSide(color: Colors.grey, width: 1.0),
+                      borderRadius: BorderRadius.circular(10.0),
                     ),
                     focusedBorder: OutlineInputBorder(
                       borderSide:
-                          const BorderSide(color: Colors.white, width: 2.0),
-                      borderRadius: BorderRadius.circular(20.0),
+                          const BorderSide(color: Colors.blue, width: 2.0),
+                      borderRadius: BorderRadius.circular(10.0),
                     ),
                   ),
                   obscureText: true,
@@ -267,13 +270,13 @@ class _UserLoginPageState extends State<UserLoginPage> {
                 // ),
                 ButtonBar(
                   children: <Widget>[
-                    OutlineButton(
+                    RaisedButton(
                       child: Text(
                         "Login",
-                        style: TextStyle(
-                          color: Colors.white,
-                          // fontSize: 18.0,
-                        ),
+                        // style: TextStyle(
+                        //   color: Colors.white,
+                        //   // fontSize: 18.0,
+                        // ),
                       ),
                       padding:
                           EdgeInsets.symmetric(horizontal: 10.0, vertical: 7.5),
@@ -288,13 +291,12 @@ class _UserLoginPageState extends State<UserLoginPage> {
                           content: new Row(
                             children: <Widget>[
                               new CircularProgressIndicator(),
-                              new Text("  Signing-In...")
+                              new Text("   Signing In...")
                             ],
                           ),
                         ));
                       },
-                      borderSide: BorderSide(color: Colors.white),
-                      shape: StadiumBorder(),
+                      color: Colors.blue,
                     )
                   ],
                   alignment: MainAxisAlignment.center,
@@ -302,17 +304,6 @@ class _UserLoginPageState extends State<UserLoginPage> {
               ],
             ),
             autovalidate: true,
-          ),
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-                stops: [0.0, 0.4, 1],
-                colors: [Colors.white, Colors.lightBlueAccent, Colors.blue]),
-          //   image: DecorationImage(
-          //   image: AssetImage("assets/background.jpg"),
-          //   fit: BoxFit.cover,
-          // ),
           ),
         ),
       ),
