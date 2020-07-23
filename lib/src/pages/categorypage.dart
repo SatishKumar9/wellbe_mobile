@@ -8,6 +8,7 @@ import 'dart:convert';
 import 'package:http/http.dart';
 
 import 'googlemap.dart';
+import 'article.dart';
 
 class CategoryPage extends StatefulWidget {
   final String category;
@@ -95,7 +96,7 @@ class CategoryPageState extends State<CategoryPage> {
     );
   }
 
-  Widget _courseList(List categoryArticles) {
+  Widget _articlesList(List categoryArticles) {
     return SingleChildScrollView(
       scrollDirection: Axis.vertical,
       child: Container(
@@ -106,12 +107,11 @@ class CategoryPageState extends State<CategoryPage> {
               InkWell(
                 onTap: () {
                   print('clicked card iterable $index');
-                  // Navigator.push(
-                  //   context,
-                  //   MaterialPageRoute(
-                  //       builder: (context) =>
-                  //           Article(categoryArticles[category][index])),
-                  // );
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => Article(categoryArticles[index])),
+                  );
                 },
                 child: Column(
                   children: <Widget>[
@@ -354,9 +354,7 @@ class CategoryPageState extends State<CategoryPage> {
           print('clicked maps');
           Navigator.push(
             context,
-            MaterialPageRoute(
-                builder: (context) =>
-                    GooglemapPage(category)),
+            MaterialPageRoute(builder: (context) => GooglemapPage(category)),
           );
         },
         child: Container(
@@ -437,7 +435,7 @@ class CategoryPageState extends State<CategoryPage> {
                   children: <Widget>[
                     _header(context),
                     _mapSection(widget.category),
-                    _courseList(categoryArticles)
+                    _articlesList(categoryArticles)
                   ],
                 ),
         ),

@@ -23,7 +23,9 @@ class Article extends StatelessWidget {
                   width: 65,
                   margin: EdgeInsets.only(bottom: 7),
                   child: _chip(
-                    article["category"],
+                    (article["category"] != null)
+                        ? article["category"]
+                        : (article["tags"] != null) ? article["tags"] : '',
                     Colors.deepPurple,
                   ),
                 ),
@@ -75,12 +77,20 @@ class Article extends StatelessWidget {
 
   Widget _textSection() {
     return Container(
-      padding: const EdgeInsets.only(left: 30,right: 30, bottom: 30),
-      child: Text(
-        article["desc"],
-        softWrap: true,
-      ),
-    );
+        padding: const EdgeInsets.only(left: 30, right: 30, bottom: 30),
+        child: Column(
+          children: <Widget>[
+            (article["intro"] != null) ? Text(
+              article["intro"],
+              softWrap: true,
+            ) : '',
+            Text(
+              article["desc"],
+              softWrap: true,
+            ),
+            
+          ],
+        ));
   }
 
   @override
@@ -91,12 +101,14 @@ class Article extends StatelessWidget {
           child: Column(
             children: <Widget>[
               // _header(context),
-              Image.network(
-                article["imageUrl"],
-                width: 600,
-                height: 240,
-                fit: BoxFit.cover,
-              ),
+              (article["imageUrl"] != null)
+                  ? Image.network(
+                      article["imageUrl"],
+                      width: 600,
+                      height: 240,
+                      fit: BoxFit.cover,
+                    )
+                  : Text('no image'),
               _titleSection(),
               _textSection(),
             ],
