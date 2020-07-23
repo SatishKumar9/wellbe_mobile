@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_smart_course/src/pages/donate_request.dart';
+import 'package:flutter_smart_course/src/pages/payments.dart';
+
 import 'home_page.dart';
 import 'recomended_page.dart';
 import 'user_login.dart';
 import 'user_profile.dart';
 import 'categories.dart';
+
 import '../helper/functions.dart';
 
 class AppDrawer extends StatefulWidget {
@@ -119,7 +123,7 @@ class _drawer extends State<AppDrawer> {
                   new MaterialPageRoute(builder: (context) => HomePage()));
             },
           ),
-            ListTile(
+          ListTile(
             title: Row(
               children: <Widget>[
                 Icon(Icons.category),
@@ -130,8 +134,10 @@ class _drawer extends State<AppDrawer> {
               ],
             ),
             onTap: () {
-              Navigator.push(context,
-                  new MaterialPageRoute(builder: (context) => CategoriesPage()));
+              Navigator.push(
+                  context,
+                  new MaterialPageRoute(
+                      builder: (context) => CategoriesPage()));
             },
           ),
           // ListTile(
@@ -173,7 +179,27 @@ class _drawer extends State<AppDrawer> {
                 )
               ],
             ),
-            onTap: () {},
+            onTap: () {
+              Navigator.push(context,
+                  new MaterialPageRoute(builder: (context) => PaymentScreen()));
+            },
+          ),
+          ListTile(
+            title: Row(
+              children: <Widget>[
+                Icon(Icons.monetization_on),
+                Padding(
+                  padding: EdgeInsets.only(left: 8.0),
+                  child: Text('FundRaiser'),
+                )
+              ],
+            ),
+            onTap: () {
+              Navigator.push(
+                  context,
+                  new MaterialPageRoute(
+                      builder: (context) => UserDonateRequest()));
+            },
           ),
         ],
       ),
