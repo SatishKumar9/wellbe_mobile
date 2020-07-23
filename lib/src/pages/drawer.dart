@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_smart_course/src/pages/donate_request.dart';
 import 'package:flutter_smart_course/src/pages/payments.dart';
+import 'package:flutter_smart_course/src/pages/questions.dart';
 
 import 'home_page.dart';
 import 'recomended_page.dart';
@@ -167,7 +168,10 @@ class _drawer extends State<AppDrawer> {
                 )
               ],
             ),
-            onTap: () {},
+            onTap: () {
+              Navigator.push(context,
+                  new MaterialPageRoute(builder: (context) => questionsPage()));
+            },
           ),
           ListTile(
             title: Row(

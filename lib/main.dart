@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 
 import 'src/pages/home_page.dart';
 import 'src/theme/theme.dart';
+import 'src/pages/questions.dart';
+import 'src/pages/ask.dart';
+import 'src/pages/view_ans.dart';
 
 void main() => runApp(MyApp());
 
@@ -14,6 +17,11 @@ class MyApp extends StatelessWidget {
       home: HomePage(),
       title: 'WellBe Mobile',
       debugShowCheckedModeBanner: false,
+      routes: {
+        questionsPage.routeName: (context) => questionsPage(),
+        FormCardWidget.routeName: (context) => FormCardWidget(),
+        viewAnswer.routeName: (context) => viewAnswer(),
+      }, //routes
     );
   }
 }

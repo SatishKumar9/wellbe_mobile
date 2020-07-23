@@ -82,7 +82,7 @@ class _UserDonateRequestState extends State<UserDonateRequest> {
             child: ListView(
               padding: EdgeInsets.symmetric(horizontal: 34.0),
               children: <Widget>[
-                SizedBox(height: 50.0),
+                SizedBox(height: 30.0),
                 Text(
                   "Fundraiser",
                   textAlign: TextAlign.center,
@@ -90,6 +90,11 @@ class _UserDonateRequestState extends State<UserDonateRequest> {
                     fontSize: 36,
                     // color: Colors.white,
                   ),
+                ),
+                SizedBox(height: 15),
+                Text(
+                  "Raise money for a cause. We will help you out :)",
+                  textAlign: TextAlign.center,
                 ),
                 SizedBox(height: 40),
                 new TextFormField(
