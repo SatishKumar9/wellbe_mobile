@@ -74,7 +74,8 @@ class _UserLoginPageState extends State<UserLoginPage> {
           builder: (BuildContext context) {
             return new AlertDialog(
               title: new Text("Login Successful!"),
-              content: new Text("You are now logged with phone number $phone_no"),
+              content:
+                  new Text("You are now logged with phone number $phone_no"),
               actions: <Widget>[
                 new FlatButton(
                     onPressed: () {
@@ -145,21 +146,26 @@ class _UserLoginPageState extends State<UserLoginPage> {
               padding: EdgeInsets.symmetric(horizontal: 24.0),
               children: <Widget>[
                 SizedBox(height: 60.0),
-                Text(
-                  "Welcome to",
-                  textAlign: TextAlign.left,
-                  style: TextStyle(
-                    fontSize: 18,
-                    // color: Colors.white,
-                  ),
-                ),
-                Text(
-                  "WellBe",
-                  textAlign: TextAlign.left,
-                  style: TextStyle(fontSize: 46, fontWeight: FontWeight.bold
-                      // color: Colors.white,
+                Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,children: <Widget>[
+                  Column(crossAxisAlignment: CrossAxisAlignment.start ,children: <Widget>[
+                    Text(
+                      "Welcome to",
+                      textAlign: TextAlign.left,
+                      style: TextStyle(
+                        fontSize: 18,
+                        // color: Colors.white,
                       ),
-                ),
+                    ),
+                    Text(
+                      "WellBe",
+                      textAlign: TextAlign.left,
+                      style: TextStyle(fontSize: 46, fontWeight: FontWeight.bold
+                          // color: Colors.white,
+                          ),
+                    ),
+                  ]),
+                  Image(image: AssetImage('assets/logo_size_android.jpg')),
+                ]),
                 SizedBox(height: 40.0),
                 Text(
                   "Login with your phone number to continue",

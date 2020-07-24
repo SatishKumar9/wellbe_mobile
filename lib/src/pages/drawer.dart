@@ -18,37 +18,16 @@ class AppDrawer extends StatefulWidget {
 
 Widget _createHeader(name) {
   return DrawerHeader(
-      margin: EdgeInsets.zero,
-      padding: EdgeInsets.zero,
-      decoration: BoxDecoration(
-        image: DecorationImage(
-          fit: BoxFit.fill,
-          image: AssetImage('assets/abstract_design_background_3007.jpg'),
-        ),
+    margin: EdgeInsets.zero,
+    padding: EdgeInsets.zero,
+    decoration: BoxDecoration(
+      image: DecorationImage(
+        // fit: BoxFit.fill,
+        image: AssetImage('assets/logo_size.jpg'),
       ),
-      child: Stack(children: <Widget>[
-        Positioned(
-            bottom: 12.0,
-            left: 16.0,
-            child: Row(
-              children: <Widget>[
-                Text(
-                  "Welcome ",
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 20.0,
-                      fontWeight: FontWeight.w500),
-                ),
-                Text(
-                  (name != null) ? name : 'to WellBe',
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 20.0,
-                      fontWeight: FontWeight.w500),
-                ),
-              ],
-            )),
-      ]));
+    ),
+    child: Text(''),
+  );
 }
 
 class _drawer extends State<AppDrawer> {
@@ -86,7 +65,7 @@ class _drawer extends State<AppDrawer> {
                 Icon(Icons.person),
                 Padding(
                   padding: EdgeInsets.only(left: 8.0),
-                  child: Text((name != null) ? 'Profile' : 'Login'),
+                  child: Text((name != null) ? '$name\'s Profile' : 'Login'),
                 )
               ],
             ),
