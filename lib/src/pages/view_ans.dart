@@ -36,10 +36,12 @@ class _viewAnswerState extends State<viewAnswer> {
             Divider(
               thickness: 1,
             ),
-            Container(
-              padding: EdgeInsets.symmetric(vertical: 10.0),
-              alignment: Alignment.centerLeft,
-              child: Text(data['answer']),
+            SingleChildScrollView(
+              child: Container(
+                padding: EdgeInsets.symmetric(vertical: 10.0),
+                alignment: Alignment.centerLeft,
+                child: Text(data['answer']),
+              ),
             ),
           ],
         ),

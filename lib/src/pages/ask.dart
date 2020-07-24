@@ -59,7 +59,7 @@ class _FormCardWidgetState extends State<FormCardWidget> {
       ),
       body: Container(
           padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 50.0),
-          child: Expanded(
+          child: SingleChildScrollView(
             child: Column(
               children: <Widget>[
                 Text("Post your Question",

@@ -71,12 +71,8 @@ class _UserPayPageState extends State<PaymentScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.blue,
-        title: Text(
-          "Donations",
-        ),
-      ),
+      appBar: AppBar(title: Text("Donations")),
+      drawer: AppDrawer(),
       body: SafeArea(
         child: new Container(
           child: new Form(
@@ -125,7 +121,13 @@ class _UserPayPageState extends State<PaymentScreen> {
                             const BorderSide(color: Colors.blue, width: 2.0),
                         borderRadius: BorderRadius.circular(10.0),
                       ),
-                      prefixIcon: Padding(padding: EdgeInsets.symmetric(horizontal: 20.0,vertical: 15.0), child: Text('₹', style: TextStyle(fontSize: 20.0),)),
+                      prefixIcon: Padding(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 20.0, vertical: 15.0),
+                          child: Text(
+                            '₹',
+                            style: TextStyle(fontSize: 20.0),
+                          )),
                     ),
                   ),
                   new ButtonBar(

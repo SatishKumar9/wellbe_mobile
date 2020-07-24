@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_smart_course/src/pages/drawer.dart';
 import 'categorypage.dart';
 
 class CategoriesPage extends StatelessWidget {
@@ -26,6 +27,7 @@ class CategoriesPage extends StatelessWidget {
       appBar: AppBar(
         title: Text("Category"),
       ),
+      drawer: AppDrawer(),
       body: CustomScrollView(
         primary: false,
         slivers: <Widget>[

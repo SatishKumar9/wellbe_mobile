@@ -38,9 +38,6 @@ class _allQuestionsState extends State<allQuestions> {
     localRead("phone_no").then((pnum) => {
           setState(() {
             print("phone num: $pnum");
-            print("qwerty");
-            print(pnum.runtimeType);
-            print("zxcvb");
             pnum = pnum;
           })
         });

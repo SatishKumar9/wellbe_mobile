@@ -75,6 +75,7 @@ class _UserDonateRequestState extends State<UserDonateRequest> {
       appBar: AppBar(
         title: Text("Fundraiser"),
       ),
+      drawer: AppDrawer(),
       body: SafeArea(
         child: new Container(
           child: new Form(
