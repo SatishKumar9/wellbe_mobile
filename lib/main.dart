@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_smart_course/src/pages/splashscreen.dart';
 
 import 'src/pages/home_page.dart';
 import 'src/theme/theme.dart';
@@ -14,7 +15,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       // theme: AppTheme.lightTheme,
-      home: HomePage(),
+      home: SplashScreen(),
       title: 'WellBe Mobile',
       debugShowCheckedModeBanner: false,
       routes: {
